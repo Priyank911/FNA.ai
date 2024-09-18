@@ -1,0 +1,85 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  
+  .navbar {
+    background-color: #000; /* Black background */
+    padding: 0.4rem 1rem; /* Reduced vertical padding for shorter navbar */
+    display: flex;
+    justify-content: space-between; /* Align logo to the left and links to the right */
+    align-items: center; /* Vertically center the items */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #333; /* Border line after the navbar */
+  }
+  
+  .navbar-logo {
+    user-select: none;
+    font-family: 'Orbitron', sans-serif; /* Futuristic, techy font */
+    font-size: 2rem; /* Slightly larger for emphasis */
+    font-weight: bold;
+    color: #00ffcc; /* Neon cyan color for a techy vibe */
+    /* text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; 
+    letter-spacing: 0.15rem; /* Wide letter spacing for a modern feel */
+    cursor: pointer; 
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  /* .navbar-logo:hover {
+    color: #ff007f;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f; 
+  } */
+  
+  
+  .navbar-list {
+    user-select: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Align the list horizontally */
+  }
+  
+  .navbar-list li {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-list li:hover {
+    background-color: #333;
+    border-radius: 5px;
+  }
+  
+  .navbar-list li a {
+    color: #fff; /* White text for contrast */
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-list li a:hover {
+    color: #00d1b2; /* Light green hover effect */
+  }
+  
+  
+  .fna {
+    font-size: 24px; /* Adjust size for prominence */
+    font-weight: bold;
+    color: #ffffff; /* Main text color */
+    margin-right: 5px; /* Spacing between FNA and .AI */
+  }
+  
+  .ai {
+    font-size: 16px; /* Smaller size for .AI */
+    color: #aaaaaa; /* Lighter color for the .AI part */
+  }
+  
+  
+  

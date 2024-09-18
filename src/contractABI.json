@@ -1,0 +1,152 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_videoHash",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_caption",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_tag",
+				"type": "string"
+			}
+		],
+		"name": "uploadVideo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "uploader",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "videoHash",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "caption",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "tag",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			}
+		],
+		"name": "VideoUploaded",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_uploader",
+				"type": "address"
+			}
+		],
+		"name": "getVideosByUploader",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "videoHash",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "caption",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "tag",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "uploader",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct VideoBlockchainTracker.Video[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "videos",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "videoHash",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "caption",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "tag",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "uploader",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
