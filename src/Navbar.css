@@ -31,13 +31,24 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-size: 2.2rem; /* Slightly larger */
   font-weight: bold;
-  color: #00ffcc; /* Neon cyan color */
+  color: #ffff; /* Neon cyan color */
   cursor: pointer;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+.navbar-logo-img {
+  height: 40px; /* Adjust size as needed */
+  width: auto; /* Maintain aspect ratio */
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar-logo-img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  filter: drop-shadow(0 0 5px #00ffcc); /* Neon effect */
+}
 
 .navbar-logo:hover {
-  color: #ff007f; /* Neon pink on hover */
+  color: #00ffcc; /* Neon pink on hover */
 }
 
 .navbar-list {
@@ -171,7 +182,7 @@ body {
 }
 
 .social-icons a:hover {
-  color: #ff007f;
+  color: #00ffcc;
 }
 
 .bm-item-list {
