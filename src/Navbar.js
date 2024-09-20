@@ -80,7 +80,7 @@ class Navbar extends React.Component {
           right 
           pageWrapId={"page-wrap"}
           outerContainerId={"outer-container"}
-          customBurgerIcon={<img src="/menusq.png" alt="Menu" />} 
+          customBurgerIcon={<img src="/menusq.svg" alt="Menu" />} 
           className="bm-menu-wrap"
         >
           <nav className="menu-content">
