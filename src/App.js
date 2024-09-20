@@ -307,6 +307,8 @@ import contractABI from './contractABI.json';
 import { db } from './firebase.js';
 import { collection, addDoc } from 'firebase/firestore';
 import logoImage from "./logo.png";
+import successImage from "./success.png"; // Success logo image path
+import failedImage from "./failed.png"; // Failed logo image path
 
 function App() {
     const [web3, setWeb3] = useState(null);
@@ -416,47 +418,130 @@ function App() {
     //     doc.save('VideoUploadAgreement.pdf');
     // };
 
-    const generatePDF = () => {
-        const doc = new jsPDF();
+    // const generatePDF = () => {
+    //     const doc = new jsPDF();
       
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(12);
+    //     doc.setFont("helvetica", "normal");
+    //     doc.setFontSize(12);
       
-        const logoWidth = 50;
-        const logoHeight = 15;
-        doc.addImage(logoImage, "PNG", 10, 10, logoWidth, logoHeight);
+    //     const logoWidth = 50;
+    //     const logoHeight = 15;
+    //     doc.addImage(logoImage, "PNG", 10, 10, logoWidth, logoHeight);
       
-        const dateTime = new Date().toLocaleString();
-        doc.setFontSize(10);
-        doc.text(`Generated on: ${dateTime}`, 160, 15, { align: "right" });
+    //     const dateTime = new Date().toLocaleString();
+    //     doc.setFontSize(10);
+    //     doc.text(`Generated on: ${dateTime}`, 160, 15, { align: "right" });
       
-        doc.setFontSize(18);
-        doc.setTextColor(0, 51, 102);
-        doc.text("Video Upload Agreement", 105, 40, { align: "center" });
+    //     doc.setFontSize(18);
+    //     doc.setTextColor(0, 51, 102);
+    //     doc.text("Video Upload Agreement", 105, 40, { align: "center" });
       
-        doc.setLineWidth(0.5);
-        doc.setDrawColor(0, 0, 0);
-        doc.line(20, 45, 190, 45);
-        doc.setLineDash([2, 2], 0);
+    //     doc.setLineWidth(0.5);
+    //     doc.setDrawColor(0, 0, 0);
+    //     doc.line(20, 45, 190, 45);
+    //     doc.setLineDash([2, 2], 0);
       
-        doc.setFontSize(12);
-        doc.setTextColor(0);
+    //     doc.setFontSize(12);
+    //     doc.setTextColor(0);
       
-        const detailsStartY = 60;
-        const lineHeight = 10;
+    //     const detailsStartY = 60;
+    //     const lineHeight = 10;
       
-        doc.text(`Video Hash: ${videoHash}`, 20, detailsStartY);
-        doc.text(`Caption: ${caption}`, 20, detailsStartY + lineHeight);
-        doc.text(`Tag: ${tag}`, 20, detailsStartY + lineHeight * 2);
-        doc.text(`Uploader: ${uploader}`, 20, detailsStartY + lineHeight * 3);
-        doc.text(`Transaction Status: ${status}`, 20, detailsStartY + lineHeight * 4);
+    //     doc.text(`Video Hash: ${videoHash}`, 20, detailsStartY);
+    //     doc.text(`Caption: ${caption}`, 20, detailsStartY + lineHeight);
+    //     doc.text(`Tag: ${tag}`, 20, detailsStartY + lineHeight * 2);
+    //     doc.text(`Uploader: ${uploader}`, 20, detailsStartY + lineHeight * 3);
+    //     doc.text(`Transaction Status: ${status}`, 20, detailsStartY + lineHeight * 4);
       
-        doc.setFontSize(10);
-        doc.setTextColor(150);
-        doc.text("© 2023 FNA.AI. All rights reserved.", 105, 280, { align: "center" });
+    //     doc.setFontSize(10);
+    //     doc.setTextColor(150);
+    //     doc.text("© 2023 FNA.AI. All rights reserved.", 105, 280, { align: "center" });
       
-        doc.save("VideoUploadAgreement.pdf");
-      };
+    //     doc.save("VideoUploadAgreement.pdf");
+    //   };
+
+const generatePDF = () => {
+const doc = new jsPDF();
+
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(12);
+  const logoWidth = 50;
+  const logoHeight = 15;
+  doc.addImage(logoImage, "PNG", 10, 10, logoWidth, logoHeight);
+
+  const dateTime = new Date().toLocaleString();
+  doc.setFontSize(10);
+  doc.text(`Generated on: ${dateTime}`, 180, 15, { align: "right" });
+
+  
+  doc.setFontSize(18);
+  doc.setTextColor(0, 51, 102);
+  doc.text("Video Upload Agreement", 105, 40, { align: "center" });
+
+
+  doc.setLineWidth(0.5);
+  doc.setDrawColor(0, 0, 0);
+  doc.line(20, 45, 190, 45);
+  doc.setLineDash([2, 2], 0);
+
+
+  const boxX = 20;
+  const boxWidth = 170; 
+  const boxHeight = 20; 
+  const detailsStartY = 60;
+  const lineHeight = 8;
+
+  
+  const details = [
+    { label: "Video Hash:", value: videoHash || "N/A" },
+    { label: "Caption:", value: caption || "N/A" },
+    { label: "Tag:", value: tag || "N/A" },
+    { label: "Uploader:", value: uploader || "N/A" },
+    { label: "Transaction Status:", value: status || "N/A" },
+  ];
+
+ 
+  details.forEach((detail, index) => {
+    const boxY = detailsStartY + index * (boxHeight + lineHeight);
+
+ 
+    doc.setDrawColor(0, 0, 0);
+    doc.rect(boxX, boxY, boxWidth, boxHeight);
+
+    
+    doc.line(boxX + 50, boxY, boxX + 50, boxY + boxHeight);
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold"); 
+    doc.text(detail.label, boxX + 5, boxY + 12);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal"); 
+    const valueText = doc.splitTextToSize(detail.value, boxWidth - 55);
+    doc.text(valueText, boxX + 55, boxY + 10);
+  });
+
+  const iconWidth = 15;
+  const iconHeight = 15;
+  const iconX = 150;
+  const iconY = detailsStartY + details.length * (boxHeight + lineHeight) - 10;
+
+  if (status.toLowerCase() === "successful") {
+    doc.addImage(successImage, "PNG", iconX, iconY, iconWidth, iconHeight);
+    doc.text("Video Verified & Uploaded Successfully", 105, iconY + 30, { align: "center" });
+  } else {
+    doc.addImage(failedImage, "PNG", iconX, iconY, iconWidth, iconHeight);
+    doc.text("Transaction Failed", 105, iconY + 30, { align: "center" });
+  }
+  doc.setFontSize(10);
+  doc.setTextColor(150);
+  doc.text("© 2023 FNA.ai . All rights reserved.", 105, 280, { align: "center" });
+  doc.save("VideoUploadAgreement.pdf");
+};
+
+
+
 
     return (
         <Container component="main" maxWidth="md" sx={{ mt: 2 }}>
