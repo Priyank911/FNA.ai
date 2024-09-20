@@ -158,7 +158,7 @@ const About = () => {
                Team Leader and Developer
               </Typography>
               <Typography variant="caption" display="block">
-                Work on Backend, Blockchain, AI, and Frontend.
+                Work on Backend, Blockchain, and Frontend.
               </Typography>
             </Paper>
           </Grid>

@@ -1,85 +1,205 @@
+/* General Styles */
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #111; /* Dark background for contrast */
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px); /* Blur effect for modern look */
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.navbar-logo {
+  user-select: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem; /* Slightly larger */
+  font-weight: bold;
+  color: #00ffcc; /* Neon cyan color */
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar-logo:hover {
+  color: #ff007f; /* Neon pink on hover */
+}
+
+.navbar-list {
+  user-select: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-list li {
+  display: inline-block;
+  margin-left: 20px;
+  padding: 0.3rem 0.8rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transform: scale(1.05); /* Subtle zoom effect */
+}
+
+.navbar-list li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-list li a:hover {
+  color: #00d1b2;
+}
+
+/* Burger Icon Styles */
+.burger-icon {
+  width: 30px;
+  height: 4px;
+  background-color: #fff; /* White bar */
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+/* Menu Bar Styles */
+.bm-menu-wrap {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 25px; /* Positioning on the right side */
+  top: 25px;
+  transition: transform 0.3s ease; /* Animation for click */
+}
+
+.bm-burger-button:hover {
+  transform: rotate(90deg); /* Rotate on hover for effect */
+}
+
+.bm-burger-bars {
+  background: #00ffcc; /* Matching theme color */
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: #00ffcc; /* Matching theme color */
+}
+
+.bm-menu {
+  background: rgba(0, 0, 0, 0.85); /* Dark semi-transparent background */
+  padding: 2em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.menu-item:hover {
+  color: #00d1b2;
+}
+
+.menu-footer {
+  margin-top: auto; /* Push to bottom */
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  color: #00ffcc;
+  font-size: 1.4rem;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff007f;
+}
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.bm-item:hover {
+  color: #00d1b2;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent overlay */
+}
+
+/* Ensure desktop view is unaffected */
+@media (min-width: 769px) {
+  .bm-burger-button {
+    display: none; /* Hide burger menu button in desktop view */
   }
-  
-  .navbar {
-    background-color: #000; /* Black background */
-    padding: 0.4rem 1rem; /* Reduced vertical padding for shorter navbar */
-    display: flex;
-    justify-content: space-between; /* Align logo to the left and links to the right */
-    align-items: center; /* Vertically center the items */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    border-bottom: 2px solid #333; /* Border line after the navbar */
-  }
-  
-  .navbar-logo {
-    user-select: none;
-    font-family: 'Orbitron', sans-serif; /* Futuristic, techy font */
-    font-size: 2rem; /* Slightly larger for emphasis */
-    font-weight: bold;
-    color: #00ffcc; /* Neon cyan color for a techy vibe */
-    /* text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; 
-    letter-spacing: 0.15rem; /* Wide letter spacing for a modern feel */
-    cursor: pointer; 
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-  }
-  
-  /* .navbar-logo:hover {
-    color: #ff007f;
-    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f; 
-  } */
-  
-  
   .navbar-list {
-    user-select: none;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex; /* Align the list horizontally */
+    display: flex; /* Ensure navbar list is displayed on larger screens */
   }
-  
-  .navbar-list li {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    transition: background-color 0.3s ease;
+}
+
+/* Hide the navbar list on mobile */
+@media (max-width: 768px) {
+  .navbar-list {
+    display: none; /* Hide navbar list on mobile devices */
   }
-  
-  .navbar-list li:hover {
-    background-color: #333;
-    border-radius: 5px;
-  }
-  
-  .navbar-list li a {
-    color: #fff; /* White text for contrast */
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 0.25rem 0.5rem;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-list li a:hover {
-    color: #00d1b2; /* Light green hover effect */
-  }
-  
-  
-  .fna {
-    font-size: 24px; /* Adjust size for prominence */
-    font-weight: bold;
-    color: #ffffff; /* Main text color */
-    margin-right: 5px; /* Spacing between FNA and .AI */
-  }
-  
-  .ai {
-    font-size: 16px; /* Smaller size for .AI */
-    color: #aaaaaa; /* Lighter color for the .AI part */
-  }
-  
-  
-  
+}
