@@ -421,7 +421,7 @@ function App() {
                 <Grid item xs={12} md={5}>
                     <Paper elevation={3} sx={{ padding: 1.5, backgroundColor: '#2C2C2C', color: 'white', borderRadius: '12px' }}>
                         <Typography variant="h6" gutterBottom>
-                            Video Blockchain Tracker
+                            Newschain Tracker
                         </Typography>
                         <Button
                             variant="contained"
