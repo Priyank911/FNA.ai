@@ -5,7 +5,7 @@ import Navbar from './Navbar'; // Assuming you have a Navbar component
 import App from './App';
 import About from './About';
 import Extension from './Extension';
-import Blockchain from './Blockchain' // Import the Coming Soon component
+import Blockchain from './Blockchain' 
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
         <Route path="/extension" element={<Extension />} />
-        <Route path="/blockchain" element={<Blockchain />} /> {/* New route for Coming Soon feature */}
+        <Route path="/blockchain" element={<Blockchain />} />
       </Routes>
     </Router>
   </React.StrictMode>
