@@ -527,7 +527,7 @@ const doc = new jsPDF();
   const iconX = 150;
   const iconY = detailsStartY + details.length * (boxHeight + lineHeight) - 10;
 
-  if (status.toLowerCase() === "successful") {
+  if (status && status.trim()) {
     doc.addImage(successImage, "PNG", iconX, iconY, iconWidth, iconHeight);
     doc.text("Video Verified & Uploaded Successfully", 105, iconY + 30, { align: "center" });
   } else {
