@@ -298,7 +298,7 @@ const ExtensionPage = () => {
       marginTop: '30px',
     },
     card: {
-      backgroundColor: '#1c1c1c', // Match with the original bg color
+      backgroundColor: '#1c1c1c', 
       padding: '30px',
       borderRadius: '10px',
       display: 'flex',
@@ -309,7 +309,7 @@ const ExtensionPage = () => {
       textAlign: 'center',
       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       cursor: 'pointer',
-      boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)', // Soft shadow for better blending
+      boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)', 
     },
     cardHover: {
       transform: 'translateY(-10px)',
@@ -318,7 +318,7 @@ const ExtensionPage = () => {
     cardIcon: {
       fontSize: '4rem',
       marginBottom: '15px',
-      color: '#76ff03', // Bright green accent for icons
+      color: '#ffffff', // Bright green accent for icons
     },
     cardTitle: {
       fontSize: '1.4rem',
@@ -335,7 +335,7 @@ const ExtensionPage = () => {
       fontSize: '1.2rem',
       fontWeight: 'bold',
       borderRadius: '5px',
-      backgroundColor: '#76ff03', // Match the icon color
+      backgroundColor: '#ffffff', // Match the icon color
       color: '#000',
       border: 'none',
       marginTop: '5px',
@@ -367,13 +367,11 @@ const ExtensionPage = () => {
     window.open('/Extension.zip', '_blank');
   };
 
-  // Modal state
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  // Function to open modal
   const openModal = () => setIsOpen(true);
 
-  // Function to close modal
+
   const closeModal = () => setIsOpen(false);
 
   return (
@@ -496,7 +494,7 @@ const ExtensionPage = () => {
             fontSize: '1.2rem',
             fontWeight: 'bold',
             borderRadius: '5px',
-            backgroundColor: '#76ff03',
+            backgroundColor: '#ffffff',
             color: '#000',
             border: 'none',
             marginTop: '5px',
@@ -541,7 +539,7 @@ const ExtensionPage = () => {
               fontSize: '1rem',
               fontWeight: 'bold',
               borderRadius: '5px',
-              backgroundColor: '#76ff03',
+              backgroundColor: '#ffffff',
               color: '#000',
               border: 'none',
               marginTop: '15px',

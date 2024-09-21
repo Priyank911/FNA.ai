@@ -110,7 +110,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import './Navbar.css';
-import Logo from './logo.svg'; // Adjust the path based on your file structure
+import Logo from './logo.svg'; 
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 class Navbar extends React.Component {
   showSettings(event) {
@@ -133,7 +134,7 @@ class Navbar extends React.Component {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/extension">Extension</Link></li>
-            <li><Link to="/blockchain">Blockchain</Link></li>
+            {/* <li><Link to="/blockchain">Blockchain</Link></li> */}
           </ul>
         </nav>
 
@@ -157,7 +158,7 @@ class Navbar extends React.Component {
             <Link id="home" className="menu-item" to="/">Home</Link>
             <Link id="about" className="menu-item" to="/about">About Us</Link>
             <Link id="extension" className="menu-item" to="/extension">Extension</Link>
-            <Link id="blockchain" className="menu-item" to="/blockchain">Blockchain</Link>
+            {/* <Link id="blockchain" className="menu-item" to="/blockchain">Blockchain</Link> */}
             <a onClick={this.showSettings} className="menu-item" href="#">Settings</a>
           </nav>
           <div className="menu-footer">
