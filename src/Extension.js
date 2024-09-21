@@ -278,7 +278,7 @@ const ExtensionPage = () => {
   const styles = {
     container: {
       minHeight: '100vh',
-      backgroundColor: '#141010', // Darker background to match original theme
+      backgroundColor: '#000000', // Darker background to match original theme
       padding: '100px 20px 50px 20px', // Updated padding to add space at the top
       textAlign: 'center',
       fontFamily: "'Roboto', sans-serif",
@@ -442,7 +442,7 @@ const ExtensionPage = () => {
         transition={{ duration: 1 }}
         style={{
           marginTop: '60px',
-          backgroundColor: '#141010',
+          backgroundColor: '#000000',
           padding: '50px 20px',
           borderRadius: '15px',
         }}

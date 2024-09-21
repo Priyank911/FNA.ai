@@ -307,8 +307,8 @@ import contractABI from './contractABI.json';
 import { db } from './firebase.js';
 import { collection, addDoc } from 'firebase/firestore';
 import logoImage from "./logo.png";
-import successImage from "./success.png"; // Success logo image path
-import failedImage from "./failed.png"; // Failed logo image path
+import successImage from "./success.png";
+import failedImage from "./failed.png"; 
 
 function App() {
     const [web3, setWeb3] = useState(null);

@@ -18,7 +18,7 @@ body {
   align-items: center; /* Centers content vertically */
   justify-content: center; /* Centers content horizontally */
   min-height: 100vh;
-  background-color: #141010;
+  background-color: #000000;
   font-family: 'Inter', sans-serif !important;
 }
 
