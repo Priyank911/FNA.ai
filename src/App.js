@@ -544,22 +544,39 @@ const doc = new jsPDF();
 
 
     return (
-        <Container component="main" maxWidth="md" sx={{ mt: 2 }}>
-            <Grid container spacing={2} justifyContent="center">
-                <Grid item xs={12} md={5}>
-                    <Paper elevation={3} sx={{ padding: 1.5, backgroundColor: '#2C2C2C', color: 'white', borderRadius: '12px' }}>
-                        <Typography variant="h6" gutterBottom>
-                            Newschain Tracker
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            component="label"
-                            fullWidth
-                            sx={{ mb: 1.5, backgroundColor: '#00cc88', color: 'white', borderRadius: '8px' }}
-                        >
-                            Upload/Drag Video
-                            <input type="file" hidden onChange={handleVideoUpload} />
-                        </Button>
+<Container 
+  component="main" 
+  maxWidth="md" 
+  sx={{ mt: 18, mb: 10 }} // Adjust this value to create space between the navbar and content
+>
+  <Grid container spacing={2} justifyContent="center">
+    <Grid item xs={12} md={5}>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 1.5,
+          backgroundColor: '#2C2C2C',
+          color: 'white',
+          borderRadius: '12px',
+        }}
+      >
+        <Typography variant="h6" gutterBottom>
+          Newschain Tracker
+        </Typography>
+        <Button
+          variant="contained"
+          component="label"
+          fullWidth
+          sx={{
+            mb: 1.5,
+            backgroundColor: '#00cc88',
+            color: 'white',
+            borderRadius: '8px',
+          }}
+        >
+          Upload/Drag Video
+          <input type="file" hidden onChange={handleVideoUpload} />
+        </Button>
 
                         {videoHash && (
                             <Box sx={{ 

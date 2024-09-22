@@ -577,7 +577,7 @@ const ExtensionPage = () => {
     container: {
       minHeight: '100vh',
       backgroundColor: '#000000',
-      padding: '50px 20px',
+      padding: '100px 20px',
       textAlign: 'center',
       fontFamily: "'Roboto', sans-serif",
     },
