@@ -1,73 +1,250 @@
+/* General body styles */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Orbitron', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center; /* Centers content vertically */
-  justify-content: center; /* Centers content horizontally */
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
   background-color: #000000;
-  font-family: 'Inter', sans-serif !important;
 }
 
-h1, p {
+/* Popup styling */
+.popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  z-index: 1000;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+Popup content box
+.popup-content {
+  background-color: rgba(26, 26, 26, 0.85);
+  padding: 60px 15px; /* Increased padding for larger height */
+  border-radius: 16px;
+  width: 95%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  min-height: 300px; /* Increased height of pop-up */
+  padding-bottom: 40px; /* Increased bottom padding for spacing */
+}
+
+/* Name styling */
+.popup-content .name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: left;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+/* Message styling */
+.popup-content .message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  margin-top: 80px; /* Spaced for visual balance */
+}
+
+/* Close button styling */
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 18px;
+  cursor: pointer;
   color: #fff;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Icon box styling */
+.icon-box {
+  background-color: #000;
+  width: 100%;
+  padding: 30px 20px; /* Increased padding for larger height */
+  border-radius: 16px;
+  box-shadow: 0px 5px 15px rgba(100, 108, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-a:hover {
-  color: #535bf2;
+/* Smaller icon */
+.call-icon {
+  font-size: 60px;
+  color: #fff;
 }
 
-button {
+/* Contact Us button */
+.contact-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #646cff;
+  border: none;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
-  border-color: #646cff;
+.contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 5px 15px rgba(100, 108, 255, 0.4);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Hover effect for popup content */
+.popup-content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(100, 108, 255, 0.5);
+}
+/* Robotic-themed button */
+.button-robotic {
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 2px solid #646cff;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+.button-robotic::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(100, 108, 255, 0.2);
+  transform: rotate(45deg);
+  transition: all 0.5s;
+  z-index: 0;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.button-robotic:hover::before {
+  top: -60%;
+  left: -60%;
+  background: rgba(100, 108, 255, 0.5);
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.button-robotic:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 20px rgba(100, 108, 255, 0.5);
+  border-color: #fff;
+}
+
+.button-robotic:focus {
+  outline: none;
+  border-color: #fff;
+}
+
+.button-robotic span {
+  position: relative;
+  z-index: 1;
+}
+
+.popup-content {
+  background-color: rgba(26, 26, 26, 0.85); /* Semi-transparent background */
+  padding: 60px 20px; /* Adjusted padding */
+  border-radius: 16px;
+  width: 95%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  min-height: 350px; /* Increased height for extra space */
+}
+
+.icon-box {
+  background-color: #000;
+  width: 100%;
+  padding: 25px 10px; /* Increased height for more vertical space */
+  border-radius: 16px;
+  margin-bottom: 15px; /* Reduced gap since name is below */
+  box-shadow: 0px 5px 15px rgba(100, 108, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Name styling moved below the icon box */
+.name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px; /* Slightly larger font */
+  font-weight: 800; /* Bold for the name */
+  letter-spacing: 4px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 5px; /* Spacing below the icon box */
+  text-align: center;
+}
+
+/* Message with robotic font and smaller size */
+.message {
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 20px; /* Increased spacing from the name */
+  line-height: 1.8;
+}
+
+.button-robotic {
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 2px solid #646cff;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  margin-top: 25px; /* Adjust spacing for the button */
 }

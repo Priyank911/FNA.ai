@@ -84,7 +84,6 @@
   display: none;
 }
 
-/* Social Media Section */
 .footer-social-section {
   display: flex;
   justify-content: center;
@@ -102,7 +101,6 @@
   color: #ffd700;
 }
 
-/* Hover Effects for Social Icons */
 .social-icon.facebook:hover {
   color: #4267B2;
 }
@@ -116,7 +114,6 @@
   color: #E1306C;
 }
 
-/* Bottom Section */
 .footer-bottom {
   font-size: 12px;
   padding-top: 10px;
@@ -125,48 +122,7 @@
   margin-top: 10px;
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: row;
-    justify-content: space-around;
-  }
 
-  .footer-left {
-    text-align: left;
-    flex: 1;
-    margin-bottom: 0;
-  }
-
-  .footer-divider {
-    display: block;
-    height: 100px;
-    margin: 0 15px;
-  }
-
-  .footer-info-section {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .footer-about,
-  .footer-contact {
-    text-align: center;
-  }
-
-  .footer-link {
-    margin-top: 5px;
-  }
-
-  .footer-logo-img {
-    width: 80px;
-  }
-
-  .footer-description-desktop {
-    display: none;
-  }
-}
 
 /* Desktop Styles */
 @media (min-width: 768px) {
@@ -201,6 +157,7 @@
   .footer-content {
     flex-direction: row;
     justify-content: space-around;
+
   }
 
   .footer-left {
@@ -226,6 +183,9 @@
     text-align: center;
   }
 
+  .footer-contact {
+    margin-left: 10px; 
+  }
  
   .footer-info-section h4 {
     font-size: 14px; 
