@@ -43,7 +43,7 @@ body {
 
 Popup content box
 .popup-content {
-  background-color: rgba(26, 26, 26, 0.85);
+  background-color: rgba(0, 0, 0, 0.85);
   padding: 60px 15px; /* Increased padding for larger height */
   border-radius: 16px;
   width: 95%;
