@@ -310,6 +310,11 @@ import logoImage from "./logo.png";
 import successImage from "./success.png";
 import failedImage from "./failed.png"; 
 
+//------Firebase Storage
+
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'; // Import necessary Firebase storage methods
+import { storage } from './firebase.js'; // Import storage from firebase.js
+
 function App() {
     const [web3, setWeb3] = useState(null);
     const [account, setAccount] = useState(null);
@@ -372,36 +377,93 @@ function App() {
         }, 2000);
     };
 
-    const uploadToBlockchain = async () => {
-        if (web3 && account) {
-            try {
-                const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade';
-                const contract = new web3.eth.Contract(contractABI, contractAddress);
+    // const uploadToBlockchain = async () => {
+    //     if (web3 && account) {
+    //         try {
+    //             const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade';
+    //             const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-                const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
-                    .send({ from: account });
+    //             const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
+    //                 .send({ from: account });
 
-                setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
+    //             setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
 
-                await addDoc(collection(db, 'videos'), {
-                    videoHash: videoHash,
-                    caption: caption,
-                    tag: tag,
-                    uploader: uploader,
-                    overview: overview,
-                    transactionHash: receipt.transactionHash,
-                    timestamp: new Date()
-                });
+    //             await addDoc(collection(db, 'videos'), {
+    //                 videoHash: videoHash,
+    //                 caption: caption,
+    //                 tag: tag,
+    //                 uploader: uploader,
+    //                 overview: overview,
+    //                 transactionHash: receipt.transactionHash,
+    //                 timestamp: new Date()
+    //             });
 
-                console.log("Video details stored in Firestore.");
-            } catch (error) {
-                console.error("Error uploading to blockchain or storing in Firestore:", error.message);
-                setStatus("Error uploading video to the blockchain.");
+    //             console.log("Video details stored in Firestore.");
+    //         } catch (error) {
+    //             console.error("Error uploading to blockchain or storing in Firestore:", error.message);
+    //             setStatus("Error uploading video to the blockchain.");
+    //         }
+    //     } else {
+    //         alert('Connect to MetaMask to interact with the blockchain.');
+    //     }
+    // };
+
+//----Updated uploadToBlockchain function to upload video to Firebase Storage
+const uploadToBlockchain = async () => {
+    if (web3 && account) {
+        try {
+            const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade';
+            const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+            const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
+                .send({ from: account });
+
+            setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
+
+            // Upload to Firebase Storage
+            if (videoFile) {
+                const storageRef = ref(storage, `videos/${videoFile.name}`);
+                const uploadTask = uploadBytesResumable(storageRef, videoFile);
+
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                    
+                    },
+                    (error) => {
+                        console.error("Error uploading video to Firebase Storage:", error.message);
+                        setStatus("Error uploading video to Firebase Storage.");
+                    },
+                    async () => {
+                        // Handle successful uploads on complete
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+                        // Store metadata in Firestore
+                        await addDoc(collection(db, 'videos'), {
+                            videoHash: videoHash,
+                            caption: caption,
+                            tag: tag,
+                            uploader: uploader,
+                            overview: overview,
+                            videoURL: downloadURL, // Add video URL from Firebase Storage
+                            transactionHash: receipt.transactionHash,
+                            timestamp: new Date()
+                        });
+
+                        console.log("Video details stored in Firestore.");
+                    }
+                );
             }
-        } else {
-            alert('Connect to MetaMask to interact with the blockchain.');
+        } catch (error) {
+            console.error("Error uploading to blockchain or storing in Firestore:", error.message);
+            setStatus("Error uploading video to the blockchain.");
         }
-    };
+    } else {
+        alert('Connect to MetaMask to interact with the blockchain.');
+    }
+};
+
+
 
     // const generatePDF = () => {
     //     const doc = new jsPDF();
