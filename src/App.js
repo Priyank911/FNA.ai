@@ -584,10 +584,10 @@ const doc = new jsPDF();
     doc.text(valueText, boxX + 55, boxY + 10);
   });
 
-  const iconWidth = 15;
-  const iconHeight = 15;
+  const iconWidth = 28;
+  const iconHeight = 28;
   const iconX = 150;
-  const iconY = detailsStartY + details.length * (boxHeight + lineHeight) - 10;
+  const iconY = detailsStartY + details.length * (boxHeight + lineHeight);
 
   if (status && status.trim()) {
     doc.addImage(successImage, "PNG", iconX, iconY, iconWidth, iconHeight);
