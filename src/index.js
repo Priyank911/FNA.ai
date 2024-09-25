@@ -102,6 +102,7 @@ import App from './App';
 import About from './About';
 import Extension from './Extension';
 import './index.css';
+import HistoryPage from './HistoryPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -162,6 +163,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
         <Route path="/extension" element={<Extension />} />
+        <Route path="/history" element={<HistoryPage />} />
       </Routes>
       <Footer />
     </Router>

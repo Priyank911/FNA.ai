@@ -132,7 +132,7 @@ class Navbar extends React.Component {
           </div>
           <ul className="navbar-list">
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/history">News History</Link></li>
             <li><Link to="/extension">Extension</Link></li>
             {/* <li><Link to="/blockchain">Blockchain</Link></li> */}
           </ul>

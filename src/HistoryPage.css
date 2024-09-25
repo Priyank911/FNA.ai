@@ -1,0 +1,39 @@
+.history-item {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.6s ease-out, box-shadow 0.4s ease;
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+  
+  .history-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .history-item h5 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #f5f5f5;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .history-item p {
+    font-size: 1rem;
+    color: #ddd;
+  }
+  
+  .history-item video {
+    border: 2px solid #444;
+    border-radius: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .history-item {
+      flex-direction: column;
+      padding: 15px;
+      min-height: 250px;
+    }
+  }
+  
