@@ -122,6 +122,24 @@ body {
   padding: 2em 1.5em 0;
   font-size: 1.15em;
 }
+.bm-menu-wrap {
+  position: fixed;
+  top: 0;
+  right: 0; /* Fix the menu to the right side */
+  height: 100vh; /* Full screen height */
+  width: 100vw; /* Full screen width */
+  background: rgba(0, 0, 0, 0.85); /* Ensure the background is dark */
+  z-index: 1000;
+}
+
+.bm-menu {
+  background: #000000;
+  padding: 2em 1.5em 0;
+  font-size: 1.15em;
+  width: 100%; /* Adjust the width of the menu */
+  position: absolute;
+  right: 0; /* Ensure the menu starts from the right side */
+}
 
 .menu-header {
   display: flex;
@@ -201,4 +219,52 @@ body {
   .navbar-list {
     display: none; /* Hide the navbar list on mobile devices */
   }
+  .navbar-logo-img {
+    height: 30px; /* Adjust logo size for mobile */
+  }
+  .wallet-button {
+    padding: 0.1rem 0.5rem; /* Smaller button size */
+    font-size: 9px; /* Adjust font size */
+    margin-right: 33px; /* Ensure enough space between button and icon */
+  }
+
+  .bm-burger-button {
+    right: 10px; /* Ensure button and icon don't overlap */
+    top: 10px;
+  }
+}
+/* Wallet Button Styles - Effective & Eye-Catching */
+.wallet-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.8rem;
+  background: linear-gradient(90deg, #003366, #800080); /* Dark blue to deep purple gradient */
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow for more depth */
+}
+
+.wallet-button:hover {
+  background: linear-gradient(90deg, #0055cc, #9900cc); /* Lighter shades on hover */
+  transform: translateY(-3px) scale(1.02); /* Slight lift and scale for interaction */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+}
+
+/* Wallet Icon */
+.wallet-icon {
+  margin-right: 10px;
+  font-size: 20px; /* Slightly larger icon */
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #f0e68c; /* Khaki color for better contrast */
+}
+
+.wallet-button:hover .wallet-icon {
+  transform: scale(1.2); /* Larger icon on hover */
+  color: #ffffff; /* Bright white on hover */
 }
