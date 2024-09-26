@@ -156,7 +156,7 @@ class Navbar extends React.Component {
           </div>
           <nav className="menu-content">
             <Link id="home" className="menu-item" to="/">Home</Link>
-            <Link id="about" className="menu-item" to="/about">About Us</Link>
+            <Link id="about" className="menu-item" to="/history">News History</Link>
             <Link id="extension" className="menu-item" to="/extension">Extension</Link>
             {/* <Link id="blockchain" className="menu-item" to="/blockchain">Blockchain</Link> */}
             <a onClick={this.showSettings} className="menu-item" href="#">Settings</a>
