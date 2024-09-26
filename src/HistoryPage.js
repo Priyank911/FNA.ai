@@ -152,21 +152,24 @@ const HistoryPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 10, pb: 10 }}>
-      {/* Updated Title Style to match the theme */}
-      <Typography
-        variant="h3"
-        align="center"
-        gutterBottom
-        sx={{
-          mb: 2,
-          color: '#FFF',
-          fontWeight: 'bold',
-          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
-        }}
-      >
-        Video Upload History
-      </Typography>
-
+  {/* Updated Title Style to match the theme */}
+  <Typography
+    variant="h3"
+    align="center"
+    gutterBottom
+    sx={{
+      mb: 2,
+      color: '#FFF',
+      fontWeight: 'bold',
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+      fontSize: {
+        xs: '2.5rem', 
+        md: '2.5rem', 
+      },
+    }}
+  >
+    Video Upload History
+  </Typography>
       {/* Subtitle or description matching the theme */}
       <Typography
         variant="body1"
