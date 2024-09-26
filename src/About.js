@@ -42,7 +42,7 @@ const About = () => {
               elevation={10}
               sx={{
                 padding: '30px',
-                backgroundColor: '#1e1e1e', // Dark gray background
+                backgroundColor: '#1e1e1e', 
                 borderRadius: '15px',
                 textAlign: 'center',
                 backgroundImage: 'linear-gradient(315deg, #1e1e1e 0%, #434343 74%)', // Gradient from dark gray to medium gray

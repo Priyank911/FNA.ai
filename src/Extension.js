@@ -755,7 +755,7 @@ const ExtensionPage = () => {
                 <Typography variant="h5" gutterBottom style={{ color: '#00FFCC' }}>
                   {item.step}
                 </Typography>
-                <Typography variant="body1">{item.description}</Typography>
+                <Typography variant="body1" gutterBottom style={{ color: '#ffffff' }}>{item.description}</Typography>
               </Paper>
             </Grid>
           ))}

@@ -1,18 +1,18 @@
 /* General Styles */
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #111; /* Dark background for contrast */
+  background-color: #121212;
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-  padding: 0.6rem 1.2rem;
+  background-color: #000000; /* Pure black background for the navbar */
+  padding: 0.8rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,27 +21,24 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px); /* Blur effect for modern look */
-  transition: background-color 0.3s ease, padding 0.3s ease;
+  border-bottom: 1px solid #fff;
+  transition: background-color 0.3s ease;
 }
 
 .navbar-logo {
   user-select: none;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 2.2rem; /* Slightly larger */
-  font-weight: bold;
-  color: #ffff; /* Neon cyan color */
-  cursor: pointer;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-.navbar-logo-img {
-  height: 40px; /* Adjust size as needed */
-  width: auto; /* Maintain aspect ratio */
-  cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+.navbar-logo-img {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* .navbar-logo-img:hover {
+  transform: scale(1.1);
+} */
 .navbar-logo-img:hover {
   transform: scale(1.1); /* Slight zoom on hover */
   filter: drop-shadow(0 0 5px #00ffcc); /* Neon effect */
@@ -52,66 +49,63 @@ body {
 }
 
 .navbar-list {
-  user-select: none;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   display: flex;
 }
 
 .navbar-list li {
   display: inline-block;
   margin-left: 20px;
-  padding: 0.3rem 0.8rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 0.5rem 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease;
+  border-radius: 12px; /* Rounded square shape */
 }
 
 .navbar-list li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  transform: scale(1.05); /* Subtle zoom effect */
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 255, 153, 0.6);
+  background-color: rgba(0, 255, 153, 0.1);
 }
 
 .navbar-list li a {
   color: #fff;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .navbar-list li a:hover {
-  color: #00d1b2;
+  color: #00ff99;
 }
 
-/* Burger Icon Styles */
-.burger-icon {
-  width: 30px;
-  height: 4px;
-  background-color: #fff; /* White bar */
-  margin: 5px 0;
-  transition: 0.4s;
-}
-
-/* Menu Bar Styles */
+/* Mobile Menu */
 .bm-menu-wrap {
   background: rgba(0, 0, 0, 0.85);
 }
 
+/* Ensure the burger button is hidden on desktop screens */
 .bm-burger-button {
   position: fixed;
   width: 36px;
   height: 30px;
-  right: 25px; /* Positioning on the right side */
+  right: 25px;
   top: 25px;
-  transition: transform 0.3s ease; /* Animation for click */
+  transition: transform 0.3s ease;
+}
+
+/* Show the burger button only on screens smaller than 769px */
+@media (min-width: 769px) {
+  .bm-burger-button {
+    display: none;
+  }
 }
 
 .bm-burger-button:hover {
-  transform: rotate(90deg); /* Rotate on hover for effect */
+  transform: rotate(90deg);
 }
 
 .bm-burger-bars {
-  background: #00ffcc; /* Matching theme color */
+  background: #00ff99;
 }
 
 .bm-cross-button {
@@ -120,11 +114,11 @@ body {
 }
 
 .bm-cross {
-  background: #00ffcc; /* Matching theme color */
+  background: #00ff99;
 }
 
 .bm-menu {
-  background: rgba(0, 0, 0, 0.85); /* Dark semi-transparent background */
+  background: #000000; /* Pure black for menu */
   padding: 2em 1.5em 0;
   font-size: 1.15em;
 }
@@ -134,8 +128,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 1.5rem;
+  border-bottom: 1px solid #fff;
 }
 
 .menu-content {
@@ -149,17 +143,23 @@ body {
   color: #fff;
   margin-bottom: 1.2rem;
   padding: 0.5rem 0;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+  font-weight: 500;
+  font-size: 1.1rem;
+  position: relative;
+  border-radius: 12px; /* Rounded square for mobile menu items */
 }
 
 .menu-item:hover {
-  color: #00d1b2;
+  color: #00ff99;
+  transform: translateY(-5px); /* 3D hover effect */
+  background-color: rgba(0, 255, 153, 0.1);
 }
 
 .menu-footer {
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto;
   padding: 1rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid #333;
 }
 
 .footer-text {
@@ -175,42 +175,30 @@ body {
 }
 
 .social-icons a {
-  color: #00ffcc;
+  color: #00ff99;
   font-size: 1.4rem;
   margin: 0 0.5rem;
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #00ffcc;
-}
-
-.bm-item-list {
-  color: #b8b7ad;
-  padding: 0.8em;
-}
-
-.bm-item:hover {
-  color: #00d1b2;
-}
-
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent overlay */
+  color: #00cc88;
 }
 
 /* Ensure desktop view is unaffected */
 @media (min-width: 769px) {
-  .bm-burger-button {
-    display: none; /* Hide burger menu button in desktop view */
+  .bm-menu-wrap {
+    display: none; /* Hide the entire menu on desktop */
   }
+  
   .navbar-list {
-    display: flex; /* Ensure navbar list is displayed on larger screens */
+    display: flex;
   }
 }
 
-/* Hide the navbar list on mobile */
+/* Show the navbar list only on desktop screens */
 @media (max-width: 768px) {
   .navbar-list {
-    display: none; /* Hide navbar list on mobile devices */
+    display: none; /* Hide the navbar list on mobile devices */
   }
 }
