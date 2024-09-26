@@ -309,6 +309,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import logoImage from "./logo.png";
 import successImage from "./success.png";
 import failedImage from "./failed.png"; 
+import Navbar from './Navbar';
 
 //------Firebase Storage
 
@@ -337,6 +338,7 @@ function App() {
                 const web3Instance = new Web3(window.ethereum);
                 setWeb3(web3Instance);
                 setAccount(accounts[0]);
+                console.log("Connected account:", accounts[0]);
             } catch (error) {
                 console.error("Connection to MetaMask failed:", error);
             }
@@ -344,10 +346,6 @@ function App() {
             alert('Please install MetaMask to use this feature.');
         }
     };
-
-    useEffect(() => {
-        connectWallet();
-    }, []);
 
     const hashVideo = async (file) => {
         const arrayBuffer = await file.arrayBuffer();
@@ -776,6 +774,7 @@ const doc = new jsPDF();
                     </Paper>
                 </Grid>
             </Grid>
+            <Navbar connectWallet={connectWallet} />
         </Container>
     );
 }
