@@ -761,7 +761,7 @@ const doc = new jsPDF();
                         ) : (
                             <Typography variant="body1" align="center" gutterBottom>
                                 Please upload and analyze the video.
-                            </Typography>
+                            </Typography> 
                         )}
 
                         {status && (
@@ -774,7 +774,8 @@ const doc = new jsPDF();
                     </Paper>
                 </Grid>
             </Grid>
-            <Navbar connectWallet={connectWallet} />
+            {/* <Navbar connectWallet={connectWallet} /> */}
+            <Navbar account={account} connectWallet={connectWallet} />
         </Container>
     );
 }
