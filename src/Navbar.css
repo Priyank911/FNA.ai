@@ -214,32 +214,52 @@ body {
   }
 }
 
-/* Show the navbar list only on desktop screens */
 @media (max-width: 768px) {
-  .navbar-list {
-    display: none; /* Hide the navbar list on mobile devices */
-  }
   .navbar-logo-img {
-    height: 30px; /* Adjust logo size for mobile */
+    height: 30px; 
   }
+
+  .navbar {
+    padding: 0.3rem 0.8rem; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  
   .wallet-button {
-    padding: 0.1rem 0.5rem; /* Smaller button size */
-    font-size: 9px; /* Adjust font size */
-    margin-right: 33px; /* Ensure enough space between button and icon */
+    padding: 0.1rem 0.5rem; 
+    font-size: 9px;
+    margin-right: 27px; 
+  }
+
+  .wallet-icon {
+    font-size: 14px; 
+  }
+  .navbar-list {
+    display: none; 
   }
 
   .bm-burger-button {
-    right: 10px; /* Ensure button and icon don't overlap */
-    top: 10px;
+    right: 8px;
+    top: 10px; 
+    width: 30px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bm-burger-bars {
+    padding: 2px; 
   }
 }
-/* Wallet Button Styles - Effective & Eye-Catching */
+
 .wallet-button {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem 0.8rem;
-  background: linear-gradient(90deg, #003366, #800080); /* Dark blue to deep purple gradient */
+  background: linear-gradient(90deg, #003366, #800080); 
   border: none;
   border-radius: 30px;
   color: #fff;
@@ -247,26 +267,26 @@ body {
   cursor: pointer;
   margin-left: auto;
   transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow for more depth */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
 }
 
 .wallet-button:hover {
-  background: linear-gradient(90deg, #0055cc, #9900cc); /* Lighter shades on hover */
-  transform: translateY(-3px) scale(1.02); /* Slight lift and scale for interaction */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+  background: linear-gradient(90deg, #0055cc, #9900cc);
+  transform: translateY(-3px) scale(1.02); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Wallet Icon */
+
 .wallet-icon {
   margin-right: 10px;
-  font-size: 20px; /* Slightly larger icon */
+  font-size: 20px;
   transition: transform 0.3s ease, color 0.3s ease;
-  color: #f0e68c; /* Khaki color for better contrast */
+  color: #f0e68c; 
 }
 
 .wallet-button:hover .wallet-icon {
-  transform: scale(1.2); /* Larger icon on hover */
-  color: #ffffff; /* Bright white on hover */
+  transform: scale(1.2); 
+  color: #ffffff; 
 }
 
 /* .connection-status {
