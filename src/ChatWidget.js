@@ -22,7 +22,8 @@ const ChatWidget = () => {
 
       try {
 
-        const responseNormal = await axios.post(`https://api-inference.huggingface.co/models/openai-community/gpt2`, {
+
+        const responseNews = await axios.post(`https://api-inference.huggingface.co/models/facebook/bart-large-cnn`, {
           inputs: input,
         }, {
           headers: {
@@ -31,19 +32,10 @@ const ChatWidget = () => {
           },
         });
 
-        // const responseNews = await axios.post(`https://api-inference.huggingface.co/models/facebook/bart-large-cnn`, {
-        //   inputs: input,
-        // }, {
-        //   headers: {
-        //     Authorization: `Bearer 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`,
-        //     'Content-Type': 'application/json'
-        //   },
-        // });
+        // const botReplyNormal = { from: "bot", text: responseNormal.data?.[0]?.generated_text || "Sorry, I couldn't generate a normal response." };
+        const botReplyNews = { from: "bot", text: responseNews.data?.[0]?.generated_text || "Sorry, I couldn't fetch news-related info." };
 
-        const botReplyNormal = { from: "bot", text: responseNormal.data?.[0]?.generated_text || "Sorry, I couldn't generate a normal response." };
-        //const botReplyNews = { from: "bot", text: responseNews.data?.[0]?.generated_text || "Sorry, I couldn't fetch news-related info." };
-
-        setMessages((prevMessages) => [...prevMessages, botReplyNormal]);
+        setMessages((prevMessages) => [...prevMessages, botReplyNews]);
 
       } catch (error) {
         console.error("Error fetching response:", error);

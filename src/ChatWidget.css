@@ -127,7 +127,7 @@
 .chat-toggle-icon {
   font-size: 28px;
 }
-
+/* Adjustments for smaller screens */
 @media (max-width: 768px) {
   .chat-box {
     width: 90%; 
@@ -157,19 +157,17 @@
 }
 
 @media (max-width: 340px) {
-
   .chat-box {
     width: 100%; 
-    height: 350px; 
+    height: 300px; 
     border-radius: 10px; 
     padding-bottom: 10px; 
   }
-  
 
   .chat-input {
     padding: 5px;
   }
-  
+
   .chat-input input {
     width: calc(100% - 60px);
     font-size: 12px;
