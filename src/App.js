@@ -461,65 +461,6 @@ const uploadToBlockchain = async () => {
     }
 };
 
-
-
-    // const generatePDF = () => {
-    //     const doc = new jsPDF();
-    //     doc.setFontSize(18);
-    //     doc.text('Video Upload Agreement', 20, 20);
-    //     doc.setFontSize(10);
-    //     doc.text(`Video Hash: ${videoHash}`, 20, 40);
-    //     doc.text(`Caption: ${caption}`, 20, 50);
-    //     doc.text(`Tag: ${tag}`, 20, 60);
-    //     doc.text(`Uploader: ${uploader}`, 20, 70);
-    //     doc.text(`Transaction Status: ${status}`, 20, 80);
-    //     doc.setFontSize(8);
-    //     doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 100);
-    //     doc.save('VideoUploadAgreement.pdf');
-    // };
-
-    // const generatePDF = () => {
-    //     const doc = new jsPDF();
-      
-    //     doc.setFont("helvetica", "normal");
-    //     doc.setFontSize(12);
-      
-    //     const logoWidth = 50;
-    //     const logoHeight = 15;
-    //     doc.addImage(logoImage, "PNG", 10, 10, logoWidth, logoHeight);
-      
-    //     const dateTime = new Date().toLocaleString();
-    //     doc.setFontSize(10);
-    //     doc.text(`Generated on: ${dateTime}`, 160, 15, { align: "right" });
-      
-    //     doc.setFontSize(18);
-    //     doc.setTextColor(0, 51, 102);
-    //     doc.text("Video Upload Agreement", 105, 40, { align: "center" });
-      
-    //     doc.setLineWidth(0.5);
-    //     doc.setDrawColor(0, 0, 0);
-    //     doc.line(20, 45, 190, 45);
-    //     doc.setLineDash([2, 2], 0);
-      
-    //     doc.setFontSize(12);
-    //     doc.setTextColor(0);
-      
-    //     const detailsStartY = 60;
-    //     const lineHeight = 10;
-      
-    //     doc.text(`Video Hash: ${videoHash}`, 20, detailsStartY);
-    //     doc.text(`Caption: ${caption}`, 20, detailsStartY + lineHeight);
-    //     doc.text(`Tag: ${tag}`, 20, detailsStartY + lineHeight * 2);
-    //     doc.text(`Uploader: ${uploader}`, 20, detailsStartY + lineHeight * 3);
-    //     doc.text(`Transaction Status: ${status}`, 20, detailsStartY + lineHeight * 4);
-      
-    //     doc.setFontSize(10);
-    //     doc.setTextColor(150);
-    //     doc.text("© 2023 FNA.AI. All rights reserved.", 105, 280, { align: "center" });
-      
-    //     doc.save("VideoUploadAgreement.pdf");
-    //   };
-
 const generatePDF = () => {
 const doc = new jsPDF();
 
