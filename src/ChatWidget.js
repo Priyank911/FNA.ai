@@ -31,15 +31,6 @@ const ChatWidget = () => {
           },
         });
 
-        // const responseNews = await axios.post(`https://api-inference.huggingface.co/models/facebook/bart-large-cnn`, {
-        //   inputs: input,
-        // }, {
-        //   headers: {
-        //     Authorization: `Bearer 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`,
-        //     'Content-Type': 'application/json'
-        //   },
-        // });
-
         const botReplyNormal = { from: "bot", text: responseNormal.data?.[0]?.generated_text || "Sorry, I couldn't generate a normal response." };
         //const botReplyNews = { from: "bot", text: responseNews.data?.[0]?.generated_text || "Sorry, I couldn't fetch news-related info." };
 
