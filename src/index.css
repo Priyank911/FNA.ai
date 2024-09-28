@@ -249,3 +249,132 @@ Popup content box
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   margin-top: 25px; /* Adjust spacing for the button */
 }
+
+/* Chatbox Container */
+.chat-box {
+  width: 350px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+/* Chat Header */
+.chat-header {
+  background: linear-gradient(90deg, #007aff, #b43aff);
+  padding: 15px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Chat Body */
+.chat-body {
+  padding: 15px;
+  background-color: #f9f9f9;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Chat Message Styles */
+.chat-message {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+.chat-message.bot {
+  background-color: #f1f1f1;
+  color: #333;
+  align-self: flex-start;
+}
+
+.chat-message.user {
+  background-color: #007aff;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-message .icon {
+  margin-right: 10px;
+}
+
+.chat-message.bot .icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.chat-message span {
+  display: inline-block;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+/* Input Field and Send Button */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.chat-input input:focus {
+  border-color: #007aff;
+}
+
+.chat-input button {
+  background-color: #007aff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 50%;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-input button:hover {
+  background-color: #0056d6;
+}
+
+/* Toggle Button for Chatbox */
+.chat-toggle-btn {
+  background-color: #4c6ef5;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  border: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.chat-toggle-btn:hover {
+  background-color: #5a7ef8;
+  transform: scale(1.1);
+}
