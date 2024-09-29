@@ -310,6 +310,8 @@ import logoImage from "./logo.png";
 import successImage from "./success.png";
 import failedImage from "./failed.png"; 
 import Navbar from './Navbar';
+import IconButton from '@mui/material/IconButton';
+
 
 //------Firebase Storage
 
@@ -680,7 +682,7 @@ const doc = new jsPDF();
                                     <strong>{analysisResult === 'approved' ? '✔ Video Approved!' : '✖ Video Rejected'}</strong>
                                 </Typography>
 
-                                {analysisResult === 'approved' && (
+                                {/* {analysisResult === 'approved' && (
                                     <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
                                         <Button
                                             variant="contained"
@@ -697,7 +699,54 @@ const doc = new jsPDF();
                                             Download Agreement
                                         </Button>
                                     </Box>
-                                )}
+                                )} */}
+
+{analysisResult === 'approved' && (
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      {/* Upload to Blockchain Button centered */}
+      <Button
+        variant="contained"
+        onClick={uploadToBlockchain}
+        sx={{
+          background: 'linear-gradient(90deg, #003366, #800080)', // Background gradient
+          color: 'white',
+          padding: '10px 30px',
+          borderRadius: '30px',
+          position: 'relative',
+          boxShadow: '3px 3px 8px rgba(0, 0, 0, 0.2)',
+          mr: 2,
+          '&:hover': {
+            background: 'linear-gradient(90deg, #0055cc, #9900cc)', // Hover gradient
+            transform: 'translateY(-2px)',
+            boxShadow: '5px 5px 12px rgba(0, 0, 0, 0.3)',
+          },
+          transition: 'all 0.3s ease',
+        }}
+      >
+        Upload to Blockchain
+      </Button>
+    
+      {/* Download Agreement Button as Icon beside Upload Button */}
+      <IconButton
+        onClick={generatePDF}
+        sx={{
+          backgroundColor: '#e74c3c', // Change to your preferred color
+          color: 'white',
+          padding: '12px',
+          borderRadius: '50%',
+          boxShadow: '3px 3px 8px rgba(0, 0, 0, 0.2)',
+          '&:hover': {
+            backgroundColor: '#c0392b', // Hover color
+            transform: 'scale(1.1)',
+            boxShadow: '5px 5px 12px rgba(0, 0, 0, 0.3)',
+          },
+          transition: 'all 0.3s ease',
+        }}
+      >
+        <i className="fas fa-file-pdf"></i> {/* PDF Icon */}
+      </IconButton>
+    </Box>
+    )}
                             </>
                         ) : (
                             <Typography variant="body1" align="center" gutterBottom>
