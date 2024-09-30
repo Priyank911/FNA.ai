@@ -300,7 +300,7 @@
 // export default App;
 
 import React, { useState, useEffect } from 'react';
-import { Button, Container, TextField, Typography, Paper, Box, Grid, LinearProgress } from '@mui/material';
+import { Button, Container, TextField, Typography, Paper, Box, Grid, LinearProgress,Select,MenuItem,InputLabel,FormControl } from '@mui/material';
 import { jsPDF } from 'jspdf';
 import Web3 from 'web3';
 import contractABI from './contractABI.json';
@@ -311,6 +311,7 @@ import successImage from "./success.png";
 import failedImage from "./failed.png"; 
 import Navbar from './Navbar';
 import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/system';
 
 
 //------Firebase Storage
@@ -332,6 +333,7 @@ function App() {
     const [analysisResult, setAnalysisResult] = useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [status, setStatus] = useState('');
+    const [category, setCategory] = useState("");
 
     const connectWallet = async () => {
         if (window.ethereum) {
@@ -394,6 +396,7 @@ function App() {
     //                 tag: tag,
     //                 uploader: uploader,
     //                 overview: overview,
+    //                 category,
     //                 transactionHash: receipt.transactionHash,
     //                 timestamp: new Date()
     //             });
@@ -445,6 +448,7 @@ const uploadToBlockchain = async () => {
                             tag: tag,
                             uploader: uploader,
                             overview: overview,
+                            category,
                             videoURL: downloadURL, // Add video URL from Firebase Storage
                             transactionHash: receipt.transactionHash,
                             timestamp: new Date()
@@ -501,6 +505,7 @@ const doc = new jsPDF();
     { label: "Caption:", value: caption || "N/A" },
     { label: "Tag:", value: tag || "N/A" },
     { label: "Uploader:", value: uploader || "N/A" },
+    { label: "Category News:", value: category || "N/A" },
     { label: "Transaction Status:", value: status || "N/A" },
   ];
 
@@ -642,6 +647,80 @@ const doc = new jsPDF();
                             InputProps={{ style: { color: 'white' } }}
                         />
 
+
+<FormControl
+  fullWidth
+  variant="outlined"
+  margin="normal"
+  sx={{
+    maxWidth: '400px',
+    backgroundColor: 'transparent',
+    borderRadius: '8px',
+    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+  }}
+>
+  <InputLabel
+    id="category-label"
+    sx={{ color: '#fff', fontWeight: 'medium' }}
+  >
+    Select Category
+  </InputLabel>
+  <Select
+    labelId="category-label"
+    id="category-select"
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    label="Select Category"
+    sx={{
+      backgroundColor: '#444',
+      color: '#fff',
+      borderRadius: '8px',
+      '& .MuiSelect-icon': {
+        color: '#000',
+      },
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#ccc',
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#999',
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#666',
+      },
+      '& .MuiPaper-root': {
+        backgroundColor: '#000',
+      },
+      '& .MuiMenuItem-root': {
+        color: '#fff',
+        backgroundColor: '#000',
+      },
+      '& .MuiMenuItem-root:hover': {
+        backgroundColor: '#333',
+      },
+      '& .MuiMenuItem-root.Mui-selected': {
+        backgroundColor: '#444',
+      },
+      '& .MuiMenuItem-root.Mui-selected:hover': {
+        backgroundColor: '#555',
+      },
+    }}
+    MenuProps={{
+      PaperProps: {
+        sx: {
+          bgcolor: '#444',
+          '& .MuiMenuItem-root': {
+            color: 'white',
+          },
+        },
+      },
+    }}
+  >
+    <MenuItem value="News">🌐 News</MenuItem>
+    <MenuItem value="Sports">🏅 Sports</MenuItem>
+    <MenuItem value="Entertainment">🎭 Entertainment</MenuItem>
+    <MenuItem value="Education">📚 Education</MenuItem>
+  </Select>
+</FormControl>
                         <Button
                             fullWidth
                             variant="contained"
