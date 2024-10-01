@@ -299,7 +299,7 @@
 
 // export default App;
 
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Button, Container, TextField, Typography, Paper, Box, Grid, LinearProgress,Select,MenuItem,InputLabel,FormControl } from '@mui/material';
 import { jsPDF } from 'jspdf';
 import Web3 from 'web3';
@@ -311,7 +311,6 @@ import successImage from "./success.png";
 import failedImage from "./failed.png"; 
 import Navbar from './Navbar';
 import IconButton from '@mui/material/IconButton';
-import { styled } from '@mui/system';
 
 
 //------Firebase Storage
@@ -438,7 +437,6 @@ const uploadToBlockchain = async () => {
                         setStatus("Error uploading video to Firebase Storage.");
                     },
                     async () => {
-                        // Handle successful uploads on complete
                         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
 
                         // Store metadata in Firestore
@@ -448,7 +446,7 @@ const uploadToBlockchain = async () => {
                             tag: tag,
                             uploader: uploader,
                             overview: overview,
-                            category,
+                            // category: category,
                             videoURL: downloadURL, // Add video URL from Firebase Storage
                             transactionHash: receipt.transactionHash,
                             timestamp: new Date()
