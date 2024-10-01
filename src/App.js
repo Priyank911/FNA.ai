@@ -414,7 +414,7 @@ function App() {
 const uploadToBlockchain = async () => {
     if (web3 && account) {
         try {
-            const contractAddress = '0x63172e30d44436c3246a4f6266d673d837281e00';
+            const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade';
             const contract = new web3.eth.Contract(contractABI, contractAddress);
 
             const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
