@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #00ffcc;
+  --secondary-color: #00cc99;
+  --background-color: #050505;
+  --text-color: #ffffff;
+  --card-background: #111111;
+}
+.svg-animation {
+    width: 20%; /* Width of the SVG */
+    height: auto; /* Height will adjust automatically */
+    margin: 20px auto; /* Center the SVG horizontally with auto margins */
+    display: flex;
+    justify-content: center; /* Center any children inside this flex container */
+  }
+.support-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem 2rem;
+}
+
+/* Header Styles */
+.support-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  transform-style: preserve-3d;
+}
+
+.support-header h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  margin-bottom: 1rem;
+  transform: translateZ(50px);
+}
+
+.support-header p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  transform: translateZ(30px);
+}
+
+/* Product Options */
+.product-options {
+  margin-bottom: 4rem;
+}
+
+.product-options h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product-item {
+  background: linear-gradient(145deg, #1c1c1c, #0e0e0e);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.product-item:hover {
+  transform: translateY(-10px) rotateX(10deg) rotateY(10deg);
+  box-shadow: 0 20px 30px rgba(0, 255, 204, 0.2);
+}
+
+.product-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transform: translateZ(30px);
+}
+
+/* FAQ Section */
+.faq-section {
+  margin-bottom: 4rem;
+}
+
+.faq-section h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.faq-item {
+  background: var(--card-background);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: scale(1.02) rotateX(2deg);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+
+.faq-icon-open {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* Support Form */
+.support-form {
+  background: linear-gradient(145deg, #1c1c1c, #0e0e0e);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 255, 204, 0.15);
+  transform-style: preserve-3d;
+}
+
+.support-form h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  transform: translateZ(30px);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 2rem;
+  transform-style: preserve-3d;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 1.2rem 1.5rem 1.2rem 3rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 204, 0.2);
+  border-radius: 15px;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+  transform: translateZ(10px);
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.textarea-icon {
+  top: 1.5rem;
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: none;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+
+.submit-button:hover {
+  background-color: var(--secondary-color);
+  box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+  transform: translateY(-5px) rotateX(10deg) rotateY(10deg);
+}
+
+.submit-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive Design for SVG */
+@media (max-width: 768px) {
+    .svg-animation {
+      width: 60%; /* Increase size for mobile devices */
+    }
+  }
+  
+  /* Support Form Styles */
+  .support-form {
+    background: linear-gradient(145deg, #1c1c1c, #0e0e0e);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 255, 204, 0.15);
+    transform-style: preserve-3d;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+  }
+  
+  /* Creative Form Title */
+  .support-form h2 {
+    font-size: 2.5rem; /* Base font size */
+    text-align: center;
+    margin-bottom: 1rem; /* Reduce bottom margin */
+    color: var(--primary-color);
+    transform: translateZ(30px);
+    text-transform: uppercase; /* Make text uppercase */
+    letter-spacing: 2px; /* Add letter spacing for creativity */
+    font-weight: 600; /* Change font weight for emphasis */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .support-container {
+      padding-top: 4rem;
+    }
+  
+    .support-header h1 {
+      font-size: 3rem;
+    }
+  
+    .support-form {
+      padding: 2rem;
+    }
+  
+    .support-form h2 {
+      font-size: 1.32rem; 
+      letter-spacing: 1px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .support-header h1 {
+      font-size: 2.5rem;
+    }
+  
+    .product-item,
+    .faq-item,
+    .support-form {
+      transform: none !important;
+    }
+  
+    .submit-button {
+      width: 100%;
+      max-width: none;
+    }
+  }

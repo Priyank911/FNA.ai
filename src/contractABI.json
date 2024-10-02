@@ -27,9 +27,9 @@
 		"inputs": [
 			{
 				"indexed": true,
-				"internalType": "address",
-				"name": "uploader",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "videoId",
+				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -50,6 +50,12 @@
 				"type": "string"
 			},
 			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "uploader",
+				"type": "address"
+			},
+			{
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "timestamp",
@@ -62,44 +68,50 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_uploader",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_videoId",
+				"type": "uint256"
 			}
 		],
-		"name": "getVideosByUploader",
+		"name": "getVideo",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "videoHash",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "caption",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "tag",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "uploader",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct VideoBlockchainTracker.Video[]",
+				"internalType": "string",
 				"name": "",
-				"type": "tuple[]"
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "videoCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -107,11 +119,6 @@
 	},
 	{
 		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
 			{
 				"internalType": "uint256",
 				"name": "",

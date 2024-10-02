@@ -39,6 +39,8 @@ import './Footer.css';
 import Logo from './logo.svg'; 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 
+
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -65,7 +67,7 @@ const Footer = () => {
             <div className="footer-contact">
               <h4>Contact Us</h4>
               <p className="footer-description-desktop">Have questions or feedback? We'd love to hear from you.</p>
-              <a href="/contact" className="footer-link">Get in Touch</a>
+              <a href="/contactsupport" className="footer-link">Get in Touch</a>
             </div>
           </div>
 

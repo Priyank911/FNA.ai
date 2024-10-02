@@ -214,7 +214,8 @@ import About from './About';
 import Extension from './Extension';
 import './index.css';
 import HistoryPage from './HistoryPage';
-import ChatWidget from './ChatWidget'; 
+import ChatWidget from './ChatWidget';
+import ContactSupport from './ContactSupport';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -277,6 +278,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/about" element={<About />} />
         <Route path="/extension" element={<Extension />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/contactsupport" element={<ContactSupport />} />
       </Routes>
       <Footer />
     </Router>
