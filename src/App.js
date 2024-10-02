@@ -333,6 +333,9 @@ function App() {
     const [thumbnail, setThumbnail] = useState('');
     const [status, setStatus] = useState('');
     const [category, setCategory] = useState("");
+    const [description, setDescription] = useState('');
+    const [summary, setSummary] = useState('');
+
 
     const connectWallet = async () => {
         if (window.ethereum) {
@@ -368,15 +371,95 @@ function App() {
         }
     };
 
-    const handleAnalyzeVideo = () => {
-        setIsAnalyzing(true);
-        setTimeout(() => {
-            const approved = Math.random() > 0.5;
-            setAnalysisResult(approved ? 'approved' : 'rejected');
-            setIsAnalyzing(false);
-            setIsAnalysisComplete(true);
-        }, 2000);
-    };
+    // const handleAnalyzeVideo = () => {
+    //     setIsAnalyzing(true);
+    //     setTimeout(() => {
+    //         const approved = Math.random() > 0.5;
+    //         setAnalysisResult(approved ? 'approved' : 'rejected');
+    //         setIsAnalyzing(false);
+    //         setIsAnalysisComplete(true);
+    //     }, 2000);
+    // };
+
+
+  //   const handleAnalyzeVideo = async () => {
+  //     setIsAnalyzing(true);
+  //     try {
+  //         const formData = new FormData();
+  //         formData.append('file', videoFile);
+
+  //         const response = await fetch('http://localhost:8000/upload_video', {
+  //             method: 'POST',
+  //             body: formData,
+  //         });
+
+  //         if (!response.ok) {
+  //             throw new Error('Video analysis failed');
+  //         }
+
+  //         const blob = await response.blob();
+  //         const url = window.URL.createObjectURL(blob);
+  //         const a = document.createElement('a');
+  //         a.style.display = 'none';
+  //         a.href = url;
+  //         a.download = 'video_summary.pdf';
+  //         document.body.appendChild(a);
+  //         a.click();
+  //         window.URL.revokeObjectURL(url);
+
+  //         setDescription("Analysis complete. PDF downloaded.");
+  //         setSummary("Please check the downloaded PDF for detailed information.");
+  //         setAnalysisResult('approved');
+  //         setIsAnalysisComplete(true);
+  //     } catch (error) {
+  //         console.error('Error analyzing video:', error);
+  //         setAnalysisResult('rejected');
+  //         setDescription("Error occurred during analysis.");
+  //         setSummary(error.message);
+  //     } finally {
+  //         setIsAnalyzing(false);
+  //     }
+  // };
+
+
+  const handleAnalyzeVideo = async () => {
+    setIsAnalyzing(true);
+    try {
+        const formData = new FormData();
+        formData.append('file', videoFile);
+
+        const response = await fetch('http://localhost:8000/upload_video', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error('Video analysis failed');
+        }
+
+        // The analysis is complete and ready for user interaction
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        // Save the URL to be used later when the button is clicked
+        setDownloadUrl(url);
+
+        setDescription("Analysis complete. Ready to download summary.");
+        setSummary("Click the 'Summarize Video' button to download the PDF.");
+        setAnalysisResult('approved');
+        setIsAnalysisComplete(true);
+    } catch (error) {
+        console.error('Error analyzing video:', error);
+        setAnalysisResult('rejected');
+        setDescription("Error occurred during analysis.");
+        setSummary(error.message);
+    } finally {
+        setIsAnalyzing(false);
+    }
+};
+
+// State to store the download URL
+const [downloadUrl, setDownloadUrl] = useState(null);
 
     // const uploadToBlockchain = async () => {
     //     if (web3 && account) {
@@ -822,6 +905,35 @@ const doc = new jsPDF();
       >
         <i className="fas fa-file-pdf"></i> {/* PDF Icon */}
       </IconButton>
+      <Button
+        variant="contained"
+        onClick={() => {
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = downloadUrl;
+          a.download = 'video_summary.pdf';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(downloadUrl);
+        }}
+        sx={{
+          ml: 2, // Spacing from the previous buttons
+          paddingLeft: '20px', // Padding from left side
+          backgroundColor: '#3498db',
+          color: 'white',
+          borderRadius: '20px',
+          padding: '10px 20px',
+          boxShadow: '3px 3px 8px rgba(0, 0, 0, 0.2)',
+          '&:hover': {
+            backgroundColor: '#2980b9',
+            transform: 'translateY(-2px)',
+            boxShadow: '5px 5px 12px rgba(0, 0, 0, 0.3)',
+          },
+          transition: 'all 0.3s ease',
+        }}
+      >
+        Summarize Video
+      </Button>
     </Box>
     )}
                             </>
