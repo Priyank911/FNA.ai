@@ -919,13 +919,13 @@ const doc = new jsPDF();
         sx={{
           ml: 2, // Spacing from the previous buttons
           paddingLeft: '20px', // Padding from left side
-          backgroundColor: '#3498db',
+          background: 'linear-gradient(90deg,#800080 ,#003366)',
           color: 'white',
           borderRadius: '20px',
           padding: '10px 20px',
           boxShadow: '3px 3px 8px rgba(0, 0, 0, 0.2)',
           '&:hover': {
-            backgroundColor: '#2980b9',
+            background: 'linear-gradient(90deg,#9900cc ,#0055cc)',
             transform: 'translateY(-2px)',
             boxShadow: '5px 5px 12px rgba(0, 0, 0, 0.3)',
           },
