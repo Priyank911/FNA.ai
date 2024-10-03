@@ -311,6 +311,9 @@ import successImage from "./success.png";
 import failedImage from "./failed.png"; 
 import Navbar from './Navbar';
 import IconButton from '@mui/material/IconButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+
 
 
 //------Firebase Storage
@@ -457,8 +460,6 @@ function App() {
         setIsAnalyzing(false);
     }
 };
-
-// State to store the download URL
 const [downloadUrl, setDownloadUrl] = useState(null);
 
     // const uploadToBlockchain = async () => {
@@ -864,7 +865,7 @@ const doc = new jsPDF();
 {analysisResult === 'approved' && (
       <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {/* Upload to Blockchain Button centered */}
-      <Button
+      {/* <Button
         variant="contained"
         onClick={uploadToBlockchain}
         sx={{
@@ -884,19 +885,53 @@ const doc = new jsPDF();
         }}
       >
         Upload to Blockchain
-      </Button>
-    
-      {/* Download Agreement Button as Icon beside Upload Button */}
+      </Button> */}
+    <Button
+  variant="contained"
+  onClick={uploadToBlockchain}
+  sx={{
+    fontSize: { xs: '10px', sm: '12px', md: '14px' }, 
+    background: 'linear-gradient(90deg, #003366, #800080)', 
+    color: 'white',
+    padding: { xs: '8px 20px', sm: '10px 25px', md: '10px 30px' }, 
+    borderRadius: '25px', 
+    position: 'relative',
+    boxShadow: '3px 3px 8px rgba(0, 0, 0, 0.2)', 
+    marginRight: '15px', 
+    textTransform: 'uppercase', 
+    letterSpacing: '1px', 
+    fontWeight: 'bold',
+    transition: 'all 0.4s ease', 
+    '&:hover': {
+      background: 'linear-gradient(90deg, #0055cc, #9900cc)', 
+      transform: 'translateY(-3px)', 
+      boxShadow: '5px 5px 12px rgba(0, 0, 0, 0.4)', 
+      letterSpacing: '2px', 
+    },
+    '&:active': {
+      transform: 'scale(0.97)', 
+    },
+
+    '@media (max-width: 600px)': {
+      width: '100%', 
+      marginTop: '10px', 
+    },
+  }}
+>
+  Launch to Blockchain
+</Button>
+
+
       <IconButton
         onClick={generatePDF}
         sx={{
-          backgroundColor: '#e74c3c', // Change to your preferred color
+          backgroundColor: '#e74c3c', 
           color: 'white',
           padding: '12px',
           borderRadius: '50%',
           boxShadow: '3px 3px 8px rgba(0, 0, 0, 0.2)',
           '&:hover': {
-            backgroundColor: '#c0392b', // Hover color
+            backgroundColor: '#c0392b',
             transform: 'scale(1.1)',
             boxShadow: '5px 5px 12px rgba(0, 0, 0, 0.3)',
           },
@@ -905,7 +940,7 @@ const doc = new jsPDF();
       >
         <i className="fas fa-file-pdf"></i> {/* PDF Icon */}
       </IconButton>
-      <Button
+      {/* <Button
         variant="contained"
         onClick={() => {
           const a = document.createElement('a');
@@ -933,7 +968,88 @@ const doc = new jsPDF();
         }}
       >
         Summarize Video
-      </Button>
+      </Button> */}
+
+      
+
+<Button
+  variant="contained"
+  onClick={() => {
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = downloadUrl;
+    a.download = 'video_summary.pdf';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(downloadUrl);
+  }}
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: { xs: '12px', sm: '14px', md: '16px' }, // Responsive font size
+    background: 'linear-gradient(90deg, #6E00A3 , #1B6BFF)', // Smooth gradient
+    color: 'white',
+    padding: { xs: '8px 12px', sm: '10px 20px', md: '12px 30px' }, // Responsive padding
+    borderRadius: '25px', // Smooth border-radius for modern look
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', // Subtle shadow
+    transition: 'all 0.6s ease', // Slower transition for hover effect
+    marginLeft: '10px',
+    position: 'relative',
+
+    '&:hover': {
+      background: 'linear-gradient(90deg, #800080 , #003366)', // Slightly change gradient on hover
+      transform: 'translateY(-2px)',
+      boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.3)',
+    },
+
+    '&:active': {
+      transform: 'scale(0.98)',
+    },
+
+    '@media (max-width: 600px)': {
+      width: '100%', // Full-width button on mobile
+      marginTop: '10px', // Additional margin for mobile view
+    },
+
+    '& .svg-wrapper': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      transition: 'transform 0.6s ease-in-out', // Slower hover animation
+    },
+
+    '&:hover .svg-wrapper': {
+      transform: 'scale(1.2)', // Enlarge the icon on hover
+      transition: '0.6s ease-in-out',
+    },
+
+    '& svg': {
+      transformOrigin: 'center',
+      transition: 'transform 0.6s ease-in-out', // Smooth transition for icon
+    },
+
+    '&:hover svg': {
+      transform: 'translateX(0) scale(1.1)', // Keep centered but enlarge the icon
+      fill: '#fff',
+    },
+
+    '& span': {
+      display: 'block',
+      marginLeft: '8px',
+      transition: 'opacity 0.6s ease-in-out',
+    },
+
+    '&:hover span': {
+      opacity: 0, // Gradual fade-out for text on hover
+    },
+  }}
+>
+  <div className="svg-wrapper">
+    <FontAwesomeIcon icon={faDownload} size="lg" />
+  </div>
+  <span>Summary</span>
+</Button>
     </Box>
     )}
                             </>
