@@ -224,7 +224,7 @@ const MobilePopup = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      // Check if popup was already closed in this session
+      
       const isPopupClosed = sessionStorage.getItem('popupClosed');
       if (!isPopupClosed && window.innerWidth <= 768) {
         setShowPopup(true);
@@ -234,8 +234,7 @@ const MobilePopup = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Call it immediately in case user is already on mobile
-
+    handleResize(); 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -243,7 +242,7 @@ const MobilePopup = () => {
 
   const closePopup = () => {
     setShowPopup(false);
-    sessionStorage.setItem('popupClosed', 'true'); // Mark popup as closed for the session
+    sessionStorage.setItem('popupClosed', 'true'); 
   };
 
   return (

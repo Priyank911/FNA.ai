@@ -1,304 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { Button, Container, TextField, Typography, Paper, Box, Grid, LinearProgress } from '@mui/material';
-// import { motion } from 'framer-motion';
-// import { jsPDF } from 'jspdf';
-// import Web3 from 'web3';
-// import contractABI from './contractABI.json';
-// import { db } from './firebase.js';
-// import { collection, addDoc } from 'firebase/firestore';
-
-
-
-// function App() {
-//     const [web3, setWeb3] = useState(null);
-//     const [account, setAccount] = useState(null);
-//     const [videoFile, setVideoFile] = useState(null);
-//     const [videoHash, setVideoHash] = useState('');
-//     const [caption, setCaption] = useState('');
-//     const [tag, setTag] = useState('');
-//     const [uploader, setUploader] = useState('');
-//     const [overview, setOverview] = useState('');
-//     const [isAnalyzing, setIsAnalyzing] = useState(false);
-//     const [isAnalysisComplete, setIsAnalysisComplete] = useState(false);
-//     const [analysisResult, setAnalysisResult] = useState('');
-//     const [thumbnail, setThumbnail] = useState('');
-//     const [status, setStatus] = useState('');
-
-
-//     const connectWallet = async () => {
-//         if (window.ethereum) {
-//             try {
-//                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-//                 const web3Instance = new Web3(window.ethereum);
-//                 setWeb3(web3Instance);
-//                 setAccount(accounts[0]);
-//             } catch (error) {
-//                 console.error("Connection to MetaMask failed:", error);
-//             }
-//         } else {
-//             alert('Please install MetaMask to use this feature.');
-//         }
-//     };
-
-//     // Effect hook to connect to wallet on load
-//     useEffect(() => {
-//         connectWallet();
-//     }, []);
-
-//     // Calculate SHA-256 hash of video
-//     const hashVideo = async (file) => {
-//         const arrayBuffer = await file.arrayBuffer();
-//         const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
-//         const hashArray = Array.from(new Uint8Array(hashBuffer));
-//         const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-//         setVideoHash(hashHex);
-//         return hashHex;
-//     };
-
-//     const handleVideoUpload = (e) => {
-//         const file = e.target.files[0];
-//         if (file) {
-//             setVideoFile(file);
-//             hashVideo(file);
-//             setThumbnail(URL.createObjectURL(file));
-//         }
-//     };
-
-//     const handleAnalyzeVideo = () => {
-//         setIsAnalyzing(true);
-//         setTimeout(() => {
-//             const approved = Math.random() > 0.5;
-//             setAnalysisResult(approved ? 'approved' : 'rejected');
-//             setIsAnalyzing(false);
-//             setIsAnalysisComplete(true);
-//         }, 2000);
-//     };
-
-//     // const uploadToBlockchain = async () => {
-//     //     if (web3 && account) {
-//     //         try {
-//     //             const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade'; 
-//     //             const contract = new web3.eth.Contract(contractABI, contractAddress);
-                
-//     //             // Assuming the smart contract has a method 'uploadVideo'
-//     //             const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
-//     //                 .send({ from: account });
-
-//     //             setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
-//     //         } catch (error) {
-//     //             console.error("Error uploading to blockchain:", error);
-//     //             setStatus("Error uploading video to the blockchain.");
-//     //         }
-//     //     } else {
-//     //         alert('Connect to MetaMask to interact with the blockchain.');
-//     //     }
-//     // };
-
-//     const uploadToBlockchain = async () => {
-//         if (web3 && account) {
-//             try {
-//                 const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade'; 
-//                 const contract = new web3.eth.Contract(contractABI, contractAddress);
-    
-//                 const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
-//                     .send({ from: account });
-    
-//                 setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
-                
-//                 // Firestore: Store the data in Firestore only if the transaction is successful
-//                 await addDoc(collection(db, 'videos'), {
-//                     videoHash: videoHash,
-//                     caption: caption,
-//                     tag: tag,
-//                     uploader: uploader,
-//                     overview: overview,
-//                     transactionHash: receipt.transactionHash, // Store the transaction hash as well
-//                     timestamp: new Date() // Store a timestamp
-//                 });
-    
-//                 console.log("Video details stored in Firestore.");
-//             } catch (error) {
-//                 console.error("Error uploading to blockchain or storing in Firestore:", error.message);
-//                 setStatus("Error uploading video to the blockchain.");
-//             }
-//         } else {
-//             alert('Connect to MetaMask to interact with the blockchain.');
-//         }
-//     };
-
-//     const generatePDF = () => {
-//         const doc = new jsPDF();
-//         doc.setFontSize(22);
-//         doc.text('Video Upload Agreement', 20, 20);
-//         doc.setFontSize(12);
-//         doc.text(`Video Hash: ${videoHash}`, 20, 40);
-//         doc.text(`Caption: ${caption}`, 20, 50);
-//         doc.text(`Tag: ${tag}`, 20, 60);
-//         doc.text(`Uploader: ${uploader}`, 20, 70);
-//         doc.text(`Transaction Status: ${status}`, 20, 80);
-//         doc.setFontSize(10);
-//         doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 100);
-//         doc.save('VideoUploadAgreement.pdf');
-//     };
-
-//     return (
-//         <Container component="main" maxWidth="lg" sx={{ mt: 6 }}>
-//             <Grid container spacing={4}>
-//                 <Grid item xs={12} md={4}>
-//                     <Paper elevation={3} sx={{ padding: 3, backgroundColor: '#2C2C2C', color: 'white' }}>
-//                         <Typography variant="h4" gutterBottom>
-//                             Video Blockchain Tracker
-//                         </Typography>
-//                         <Button
-//                             variant="contained"
-//                             component="label"
-//                             fullWidth
-//                             sx={{ mb: 2, backgroundColor: '#00cc88', color: 'white' }}
-//                         >
-//                             Upload/Drag Video
-//                             <input type="file" hidden onChange={handleVideoUpload} />
-//                         </Button>
-
-//                         {videoHash && (
-//                       <Box sx={{ 
-//                         p: 2, 
-//                         border: '1px solid #777', 
-//                         borderRadius: '4px', 
-//                         backgroundColor: '#333', 
-//                         color: 'white', 
-//                         mb: 2, 
-//                         wordBreak: 'break-all' 
-//                         }}>
-//                       <Typography variant="body1" gutterBottom>
-//                       <strong>Video Hash:</strong> {videoHash}
-//                       </Typography>
-//                      </Box>
-//                       )}
-
-
-//                         <TextField
-//                             fullWidth
-//                             label="Enter Caption"
-//                             variant="outlined"
-//                             margin="normal"
-//                             value={caption}
-//                             onChange={(e) => setCaption(e.target.value)}
-//                             sx={{ backgroundColor: '#444', mb: 2 }}
-//                             InputLabelProps={{ style: { color: '#AAA' } }}
-//                             InputProps={{ style: { color: 'white' } }}
-//                         />
-//                         <TextField
-//                             fullWidth
-//                             label="Enter Main Tag"
-//                             variant="outlined"
-//                             margin="normal"
-//                             value={tag}
-//                             onChange={(e) => setTag(e.target.value)}
-//                             sx={{ backgroundColor: '#444', mb: 2 }}
-//                             InputLabelProps={{ style: { color: '#AAA' } }}
-//                             InputProps={{ style: { color: 'white' } }}
-//                         />
-//                         <TextField
-//                             fullWidth
-//                             label="Enter Uploader Name"
-//                             variant="outlined"
-//                             margin="normal"
-//                             value={uploader}
-//                             onChange={(e) => setUploader(e.target.value)}
-//                             sx={{ backgroundColor: '#444', mb: 2 }}
-//                             InputLabelProps={{ style: { color: '#AAA' } }}
-//                             InputProps={{ style: { color: 'white' } }}
-//                         />
-//                         <TextField
-//                             fullWidth
-//                             label="Enter Overview of Video"
-//                             variant="outlined"
-//                             margin="normal"
-//                             value={overview}
-//                             onChange={(e) => setOverview(e.target.value)}
-//                             sx={{ backgroundColor: '#444', mb: 2 }}
-//                             InputLabelProps={{ style: { color: '#AAA' } }}
-//                             InputProps={{ style: { color: 'white' } }}
-//                         />
-
-//                         <Button
-//                             fullWidth
-//                             variant="contained"
-//                             color="primary"
-//                             onClick={handleAnalyzeVideo}
-//                             disabled={!videoFile || !caption || !tag || !uploader || !overview || isAnalyzing}
-//                             sx={{ backgroundColor: '#00cc88', color: 'white' }}
-//                         >
-//                             Analyze Video
-//                         </Button>
-//                     </Paper>
-//                 </Grid>
-
-//                 <Grid item xs={12} md={8}>
-//                     <Paper elevation={3} sx={{ padding: 3, backgroundColor: '#2C2C2C', color: 'white' }}>
-//                         {videoFile && (
-//                             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 250, mb: 3 }}>
-//                                 <video width="100%" height="100%" controls>
-//                                     <source src={thumbnail} type="video/mp4" />
-//                                     Your browser does not support the video tag.
-//                                 </video>
-//                             </Box>
-//                         )}
-
-//                         {isAnalyzing ? (
-//                             <>
-//                                 <Typography variant="h6" align="center">
-//                                     Analysis in Progress...
-//                                 </Typography>
-//                                 <LinearProgress color="secondary" />
-//                             </>
-//                         ) : isAnalysisComplete ? (
-//                             <>
-//                                 <Typography variant="h5" align="center" gutterBottom>
-//                                     AI Analysis Complete
-//                                 </Typography>
-//                                 <Typography variant="body1" align="center">
-//                                     This video is <strong>{analysisResult}</strong>.
-//                                 </Typography>
-                                // <Typography align="center" color={analysisResult === 'approved' ? 'green' : 'red'} variant="h6" sx={{ mt: 2 }}>
-                                //     <strong>{analysisResult === 'approved' ? '✔ Video Approved!' : '✖ Video Rejected'}</strong>
-                                // </Typography>
-
-                                // {analysisResult === 'approved' && (
-                                //     <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-                                //         <Button
-                                //             variant="contained"
-                                //             onClick={uploadToBlockchain}
-                                //             sx={{ backgroundColor: '#00cc88', color: 'white', mr: 2 }}
-                                //         >
-                                //             Upload to Blockchain
-                                //         </Button>
-                                //         <Button
-                                //             variant="contained"
-                                //             color="secondary"
-                                //             onClick={generatePDF}
-                                //         >
-                                //             Download Agreement
-                                //         </Button>
-                                //     </Box>
-                                // )}
-//                             </>
-//                         ) : null}
-
-//                         {status && (
-//                             <Box sx={{ mt: 3, p: 2, backgroundColor: '#444', borderRadius: '4px', textAlign: 'center' }}>
-//                                 <Typography variant="body1">{status}</Typography>
-//                             </Box>
-//                         )}
-//                     </Paper>
-//                 </Grid>
-//             </Grid>
-//         </Container>
-//     );
-// }
-
-// export default App;
-
 import React, { useState} from 'react';
 import { Button, Container, TextField, Typography, Paper, Box, Grid, LinearProgress,Select,MenuItem,InputLabel,FormControl } from '@mui/material';
 import { jsPDF } from 'jspdf';
@@ -355,6 +54,72 @@ function App() {
             alert('Please install MetaMask to use this feature.');
         }
     };
+
+  //   const connectWallet = async () => {
+  //     const walletChoice = prompt("Choose your wallet: 1 for MetaMask (Ethereum), 2 for Petra (Aptos)");
+  
+  //     if (walletChoice === '1') {
+  //         // MetaMask connection
+  //         if (window.ethereum) {
+  //             try {
+  //                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  //                 const web3Instance = new Web3(window.ethereum);
+  //                 setWeb3(web3Instance);
+  //                 setAccount(accounts[0]);
+  //                 console.log("Connected account (MetaMask):", accounts[0]);
+  //             } catch (error) {
+  //                 console.error("Connection to MetaMask failed:", error);
+  //             }
+  //         } else {
+  //             alert('Please install MetaMask to use this feature.');
+  //         }
+  //     } else if (walletChoice === '2') {
+  //         // Petra Wallet connection
+  //         await connectPetraWallet();
+  //     } else {
+  //         alert('Invalid choice. Please select a valid wallet option.');
+  //     }
+  // };
+  
+  // const connectPetraWallet = async () => {
+  //     if (window.aptos) {
+  //         try {
+  //             const account = await window.aptos.connect();
+  //             const address = account.address;
+  //             setAccount(address);  // Set the connected Petra wallet account
+  //             console.log("Connected account (Petra):", address);
+  //         } catch (error) {
+  //             console.error("Connection to Petra Wallet failed:", error);
+  //             alert('Error connecting to Petra Wallet. Please try again.');
+  //         }
+  //     } else {
+  //         alert('Petra Wallet not detected. Please ensure it is installed and enabled.');
+  //         console.log("Petra Wallet not detected.");
+  //     }
+  // };
+  
+  // // Retry function to check for Petra Wallet after some delay
+  // const retryConnectPetra = (retryCount = 3) => {
+  //     let attempt = 0;
+  
+  //     const checkForPetra = setInterval(async () => {
+  //         if (window.aptos) {
+  //             clearInterval(checkForPetra);  // Stop checking once the wallet is found
+  //             await connectPetraWallet();  // Attempt to connect to Petra
+  //         } else if (attempt >= retryCount) {
+  //             clearInterval(checkForPetra);  // Stop retrying after max attempts
+  //             alert("Petra Wallet not found after multiple attempts.");
+  //         }
+  //         attempt++;
+  //     }, 2000);  // Check every 2 seconds
+  // };
+  
+  // // Call the retry function if wallet not found
+  // if (!window.aptos) {
+  //     console.log("Waiting for Petra Wallet to initialize...");
+  //     retryConnectPetra();
+  // }
+  
 
     const hashVideo = async (file) => {
         const arrayBuffer = await file.arrayBuffer();
@@ -439,12 +204,8 @@ function App() {
         if (!response.ok) {
             throw new Error('Video analysis failed');
         }
-
-        // The analysis is complete and ready for user interaction
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-
-        // Save the URL to be used later when the button is clicked
         setDownloadUrl(url);
 
         setDescription("Analysis complete. Ready to download summary.");
@@ -549,6 +310,7 @@ const uploadToBlockchain = async () => {
     }
 };
 
+
 const generatePDF = () => {
 const doc = new jsPDF();
 
@@ -637,7 +399,7 @@ const doc = new jsPDF();
 <Container 
   component="main" 
   maxWidth="md" 
-  sx={{ mt: 18, mb: 10 }} // Adjust this value to create space between the navbar and content
+  sx={{ mt: 18, mb: 10 }} 
 >
   <Grid container spacing={2} justifyContent="center">
     <Grid item xs={12} md={5}>
@@ -987,18 +749,18 @@ const doc = new jsPDF();
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: { xs: '12px', sm: '14px', md: '16px' }, // Responsive font size
-    background: 'linear-gradient(90deg, #6E00A3 , #1B6BFF)', // Smooth gradient
+    fontSize: { xs: '12px', sm: '14px', md: '16px' }, 
+    background: 'linear-gradient(90deg, #6E00A3 , #1B6BFF)', 
     color: 'white',
-    padding: { xs: '8px 12px', sm: '10px 20px', md: '12px 30px' }, // Responsive padding
-    borderRadius: '25px', // Smooth border-radius for modern look
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', // Subtle shadow
-    transition: 'all 0.6s ease', // Slower transition for hover effect
+    padding: { xs: '8px 12px', sm: '10px 20px', md: '12px 30px' }, 
+    borderRadius: '25px', 
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+    transition: 'all 0.6s ease', 
     marginLeft: '10px',
     position: 'relative',
 
     '&:hover': {
-      background: 'linear-gradient(90deg, #800080 , #003366)', // Slightly change gradient on hover
+      background: 'linear-gradient(90deg, #800080 , #003366)', 
       transform: 'translateY(-2px)',
       boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.3)',
     },
@@ -1008,29 +770,29 @@ const doc = new jsPDF();
     },
 
     '@media (max-width: 600px)': {
-      width: '100%', // Full-width button on mobile
-      marginTop: '10px', // Additional margin for mobile view
+      width: '100%', 
+      marginTop: '10px', 
     },
 
     '& .svg-wrapper': {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      transition: 'transform 0.6s ease-in-out', // Slower hover animation
+      transition: 'transform 0.6s ease-in-out', 
     },
 
     '&:hover .svg-wrapper': {
-      transform: 'scale(1.2)', // Enlarge the icon on hover
+      transform: 'scale(1.2)',
       transition: '0.6s ease-in-out',
     },
 
     '& svg': {
       transformOrigin: 'center',
-      transition: 'transform 0.6s ease-in-out', // Smooth transition for icon
+      transition: 'transform 0.6s ease-in-out', 
     },
 
     '&:hover svg': {
-      transform: 'translateX(0) scale(1.1)', // Keep centered but enlarge the icon
+      transform: 'translateX(0) scale(1.1)', 
       fill: '#fff',
     },
 
@@ -1041,7 +803,7 @@ const doc = new jsPDF();
     },
 
     '&:hover span': {
-      opacity: 0, // Gradual fade-out for text on hover
+      opacity: 0,
     },
   }}
 >
