@@ -426,20 +426,60 @@ const doc = new jsPDF();
 >
   Newschain Tracker
 </Typography>
-        <Button
-          variant="contained"
-          component="label"
-          fullWidth
-          sx={{
-            mb: 1.5,
-            backgroundColor: '#5c25d2',
-            color: 'white',
-            borderRadius: '8px',
-          }}
-        >
-          Upload Video
-          <input type="file" hidden onChange={handleVideoUpload} />
-        </Button>
+<Button
+    variant="contained"
+    component="label"
+    fullWidth
+    sx={{
+        mb: 1.5,
+        backgroundColor: '#1e1e2e', // Dark tone for black theme
+        color: '#e6e6e6', // Soft light color for text
+        borderRadius: '16px',
+        fontWeight: 'bold',
+        padding: '14px 24px',
+        textTransform: 'none',
+        fontSize: '16px',
+        position: 'relative',
+        overflow: 'hidden',
+        transition: 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out',
+        '&:hover': {
+            backgroundColor: '#28293d', // Slightly lighter for hover effect
+            transform: 'scale(1.05)',
+        },
+        '&:active': {
+            backgroundColor: '#34354b',
+            transform: 'scale(0.98)',
+        },
+        '&:focus': {
+            outline: 'none',
+        },
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '-100%',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(180deg, rgba(126, 63, 242, 0.2), rgba(126, 63, 242, 0))',
+            animation: 'uploadGlow 2s infinite',
+        },
+        '@keyframes uploadGlow': {
+            '0%': {
+                top: '-100%',
+            },
+            '50%': {
+                top: '50%',
+            },
+            '100%': {
+                top: '100%',
+            },
+        },
+    }}
+>
+    Upload Video
+    <input type="file" hidden onChange={handleVideoUpload} />
+</Button>
+
 
                         {videoHash && (
                             <Box sx={{ 
@@ -576,7 +616,7 @@ const doc = new jsPDF();
     onClick={handleAnalyzeVideo}
     disabled={!videoFile || !caption || !tag || !uploader || !overview || isAnalyzing}
     sx={{
-        backgroundColor: '#00cc88',
+      background: 'linear-gradient(90deg, #733bea, #3d1497)',
         color: 'white',
         borderRadius: '12px',
         fontWeight: 'bold',
@@ -584,11 +624,11 @@ const doc = new jsPDF();
         textTransform: 'none',
         transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
         '&:hover': {
-            backgroundColor: '#00b377',
+            background: 'linear-gradient(90deg, #3d1497, #733bea)',
             transform: 'scale(1.05)',
         },
         '&:disabled': {
-            backgroundColor: '#b0b0b0',
+            backgroundColor: '#1a1a1a',
             color: '#e0e0e0',
         },
         '&:focus': {
