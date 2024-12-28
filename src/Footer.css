@@ -1,6 +1,5 @@
-/* General styles */
 .footer {
-  background: linear-gradient(135deg, #1e1e28, #323248);
+  background: linear-gradient(135deg, #000000, #323248);
   color: #ffffff;
   padding: 20px;
   display: flex;
@@ -8,9 +7,9 @@
   align-items: center;
   width: 100vw;
   box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Footer Content */
 .footer-content {
   display: flex;
   justify-content: space-between;

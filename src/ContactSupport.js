@@ -33,51 +33,48 @@ const ContactSupport = () => {
 
       {/* SVG Animation Section */}
       <section className="svg-animation">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
-          <defs>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+        <defs>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style={{ stopColor: '#00ffcc', stopOpacity: 1 }} />
-              <stop offset="100%" style={{ stopColor: '#00cc99', stopOpacity: 1 }} />
+                <stop offset="0%" style={{ stopColor: '#ffffff', stopOpacity: 0.8 }} />
+                <stop offset="100%" style={{ stopColor: '#ffffff', stopOpacity: 0.3 }} />
             </linearGradient>
-          </defs>
-          
-          {/* Background */}
-          <rect width="400" height="300" fill="#000000" />
-          
-          {/* Abstract shapes */}
-          <circle cx="200" cy="150" r="100" fill="none" stroke="url(#grad1)" strokeWidth="4">
+        </defs>
+    
+        {/* Abstract shapes */}
+        <circle cx="200" cy="150" r="100" fill="none" stroke="url(#grad1)" strokeWidth="4">
             <animate attributeName="r" values="100;110;100" dur="4s" repeatCount="indefinite" />
-          </circle>
-          
-          <path d="M200,50 Q230,150 200,250 T200,50" fill="none" stroke="#00ffcc" strokeWidth="3">
+        </circle>
+        
+        <path d="M200,50 Q230,150 200,250 T200,50" fill="none" stroke="#ffffff" strokeWidth="3">
             <animate attributeName="d" values="M200,50 Q230,150 200,250 T200,50;M200,50 Q170,150 200,250 T200,50;M200,50 Q230,150 200,250 T200,50" dur="6s" repeatCount="indefinite" />
-          </path>
-          
-          {/* Communication symbols */}
-          <g transform="translate(150, 130)">
-            <rect x="0" y="0" width="40" height="30" rx="5" fill="#00ffcc">
-              <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </path>
+        
+        {/* Communication symbols */}
+        <g transform="translate(150, 130)">
+            <rect x="0" y="0" width="40" height="30" rx="5" fill="#ffffff">
+                <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
             </rect>
-            <polyline points="0,0 20,15 40,0" fill="none" stroke="#050505" strokeWidth="2" />
-          </g>
-          
-          <g transform="translate(210, 140)">
-            <circle cx="15" cy="15" r="15" fill="#00cc99">
-              <animate attributeName="r" values="15;18;15" dur="2s" repeatCount="indefinite" />
+            <polyline points="0,0 20,15 40,0" fill="none" stroke="#212121" strokeWidth="2" />
+        </g>
+        
+        <g transform="translate(210, 140)">
+            <circle cx="15" cy="15" r="15" fill="#ffffff">
+                <animate attributeName="r" values="15;18;15" dur="2s" repeatCount="indefinite" />
             </circle>
-            <path d="M15,8 Q8,15 15,22 T15,8" fill="none" stroke="#050505" strokeWidth="2" />
-          </g>
-          
-          {/* Connecting lines */}
-          <line x1="100" y1="150" x2="300" y2="150" stroke="#00ffcc" strokeWidth="1" strokeDasharray="5,5">
+            <path d="M15,8 Q8,15 15,22 T15,8" fill="none" stroke="#212121" strokeWidth="2" />
+        </g>
+        
+        {/* Connecting lines */}
+        <line x1="100" y1="150" x2="300" y2="150" stroke="#ffffff" strokeWidth="1" strokeDasharray="5,5">
             <animate attributeName="stroke-dashoffset" values="0;100" dur="10s" repeatCount="indefinite" />
-          </line>
-          
-          <line x1="200" y1="50" x2="200" y2="250" stroke="#00cc99" strokeWidth="1" strokeDasharray="5,5">
+        </line>
+        
+        <line x1="200" y1="50" x2="200" y2="250" stroke="#ffffff" strokeWidth="1" strokeDasharray="5,5">
             <animate attributeName="stroke-dashoffset" values="0;100" dur="10s" repeatCount="indefinite" />
-          </line>
-        </svg>
-      </section>
+        </line>
+    </svg>
+</section>
 
       <section className="product-options">
         <h2>Select a Product</h2>
