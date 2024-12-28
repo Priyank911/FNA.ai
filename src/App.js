@@ -12,6 +12,7 @@ import Navbar from './Navbar';
 import IconButton from '@mui/material/IconButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -407,26 +408,36 @@ const doc = new jsPDF();
         elevation={3}
         sx={{
           padding: 1.5,
-          backgroundColor: '#2C2C2C',
+          backgroundColor: '#111111',
           color: 'white',
           borderRadius: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
         }}
       >
-        <Typography variant="h6" gutterBottom>
-          Newschain Tracker
-        </Typography>
+<Typography
+  variant="h6"
+  gutterBottom
+  sx={{
+    fontFamily: 'Roboto, sans-serif',
+    fontWeight: 'bold',
+    letterSpacing: 1,
+    color: 'white',
+  }}
+>
+  Newschain Tracker
+</Typography>
         <Button
           variant="contained"
           component="label"
           fullWidth
           sx={{
             mb: 1.5,
-            backgroundColor: '#00cc88',
+            backgroundColor: '#5c25d2',
             color: 'white',
             borderRadius: '8px',
           }}
         >
-          Upload/Drag Video
+          Upload Video
           <input type="file" hidden onChange={handleVideoUpload} />
         </Button>
 
@@ -446,50 +457,70 @@ const doc = new jsPDF();
                             </Box>
                         )}
 
-                        <TextField
-                            fullWidth
-                            label="Enter Caption"
-                            variant="outlined"
-                            margin="normal"
-                            value={caption}
-                            onChange={(e) => setCaption(e.target.value)}
-                            sx={{ backgroundColor: '#444', mb: 1.5, borderRadius: '8px' }}
-                            InputLabelProps={{ style: { color: '#AAA' } }}
-                            InputProps={{ style: { color: 'white' } }}
-                        />
-                        <TextField
-                            fullWidth
-                            label="Enter Main Tag"
-                            variant="outlined"
-                            margin="normal"
-                            value={tag}
-                            onChange={(e) => setTag(e.target.value)}
-                            sx={{ backgroundColor: '#444', mb: 1.5, borderRadius: '8px' }}
-                            InputLabelProps={{ style: { color: '#AAA' } }}
-                            InputProps={{ style: { color: 'white' } }}
-                        />
-                        <TextField
-                            fullWidth
-                            label="Enter Uploader Name"
-                            variant="outlined"
-                            margin="normal"
-                            value={uploader}
-                            onChange={(e) => setUploader(e.target.value)}
-                            sx={{ backgroundColor: '#444', mb: 1.5, borderRadius: '8px' }}
-                            InputLabelProps={{ style: { color: '#AAA' } }}
-                            InputProps={{ style: { color: 'white' } }}
-                        />
-                        <TextField
-                            fullWidth
-                            label="Enter Overview of Video"
-                            variant="outlined"
-                            margin="normal"
-                            value={overview}
-                            onChange={(e) => setOverview(e.target.value)}
-                            sx={{ backgroundColor: '#444', mb: 1.5, borderRadius: '8px' }}
-                            InputLabelProps={{ style: { color: '#AAA' } }}
-                            InputProps={{ style: { color: 'white' } }}
-                        />
+<TextField
+  fullWidth
+  label="Enter Caption"
+  variant="outlined"
+  margin="normal"
+  value={caption}
+  onChange={(e) => setCaption(e.target.value)}
+  sx={{
+    backgroundColor: '#1a1a1a',
+    mb: 1.5,
+    borderRadius: '8px',
+    border: '1px solid rgba(255, 255, 255, 0.2)', 
+  }}
+  InputLabelProps={{ style: { color: '#AAA' } }}
+  InputProps={{ style: { color: 'white' } }}
+/>
+<TextField
+  fullWidth
+  label="Enter Main Tag"
+  variant="outlined"
+  margin="normal"
+  value={tag}
+  onChange={(e) => setTag(e.target.value)}
+  sx={{
+    backgroundColor: '#1a1a1a',
+    mb: 1.5,
+    borderRadius: '8px',
+    border: '1px solid rgba(255, 255, 255, 0.2)', 
+  }}
+  InputLabelProps={{ style: { color: '#AAA' } }}
+  InputProps={{ style: { color: 'white' } }}
+/>
+<TextField
+  fullWidth
+  label="Enter Uploader Name"
+  variant="outlined"
+  margin="normal"
+  value={uploader}
+  onChange={(e) => setUploader(e.target.value)}
+  sx={{
+    backgroundColor: '#1a1a1a',
+    mb: 1.5,
+    borderRadius: '8px',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+  }}
+  InputLabelProps={{ style: { color: '#AAA' } }}
+  InputProps={{ style: { color: 'white' } }}
+/>
+<TextField
+  fullWidth
+  label="Enter Overview of Video"
+  variant="outlined"
+  margin="normal"
+  value={overview}
+  onChange={(e) => setOverview(e.target.value)}
+  sx={{
+    backgroundColor: '#1a1a1a',
+    mb: 1.5,
+    borderRadius: '8px',
+    border: '1px solid rgba(255, 255, 255, 0.2)', 
+  }}
+  InputLabelProps={{ style: { color: '#AAA' } }}
+  InputProps={{ style: { color: 'white' } }}
+/>
 
 
 <FormControl
@@ -516,37 +547,10 @@ const doc = new jsPDF();
     onChange={(e) => setCategory(e.target.value)}
     label="Select Category"
     sx={{
-      backgroundColor: '#444',
+      backgroundColor: '#1a1a1a',
       color: '#fff',
       borderRadius: '8px',
-      '& .MuiSelect-icon': {
-        color: '#000',
-      },
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#ccc',
-      },
-      '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#999',
-      },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#666',
-      },
-      '& .MuiPaper-root': {
-        backgroundColor: '#000',
-      },
-      '& .MuiMenuItem-root': {
-        color: '#fff',
-        backgroundColor: '#000',
-      },
-      '& .MuiMenuItem-root:hover': {
-        backgroundColor: '#333',
-      },
-      '& .MuiMenuItem-root.Mui-selected': {
-        backgroundColor: '#444',
-      },
-      '& .MuiMenuItem-root.Mui-selected:hover': {
-        backgroundColor: '#555',
-      },
+      border: '1px solid rgba(255, 255, 255, 0.2)', 
     }}
     MenuProps={{
       PaperProps: {
@@ -565,16 +569,36 @@ const doc = new jsPDF();
     <MenuItem value="Education">📚 Education</MenuItem>
   </Select>
 </FormControl>
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            onClick={handleAnalyzeVideo}
-                            disabled={!videoFile || !caption || !tag || !uploader || !overview || isAnalyzing}
-                            sx={{ backgroundColor: '#00cc88', color: 'white', borderRadius: '8px' }}
-                        >
-                            Analyze Video
-                        </Button>
+<Button
+    fullWidth
+    variant="contained"
+    color="primary"
+    onClick={handleAnalyzeVideo}
+    disabled={!videoFile || !caption || !tag || !uploader || !overview || isAnalyzing}
+    sx={{
+        backgroundColor: '#00cc88',
+        color: 'white',
+        borderRadius: '12px',
+        fontWeight: 'bold',
+        padding: '10px 20px',
+        textTransform: 'none',
+        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+        '&:hover': {
+            backgroundColor: '#00b377',
+            transform: 'scale(1.05)',
+        },
+        '&:disabled': {
+            backgroundColor: '#b0b0b0',
+            color: '#e0e0e0',
+        },
+        '&:focus': {
+            animation: `0 0 10px 0 rgba(0, 204, 136, 0.5) 1.5s infinite`,
+        },
+    }}
+    startIcon={isAnalyzing ? <CircularProgress size={24} style={{ color: 'white' }} /> : null}
+>
+    {isAnalyzing ? 'Analyzing...' : 'Analyze Video'}
+</Button>
                     </Paper>
                 </Grid>
 

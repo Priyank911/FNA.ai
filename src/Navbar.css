@@ -43,7 +43,7 @@ body {
 }
 
 .navbar-logo:hover {
-  color: #00ffcc; /* Neon pink on hover */
+  color: #00ffcc; 
 }
 
 .navbar-list {
@@ -257,9 +257,9 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 0.8rem;
-  background: linear-gradient(90deg, #003366, #800080); 
+  background: linear-gradient(90deg, #733bea, #3d1497); 
   border: none;
-  border-radius: 30px;
+  border-radius: 12px;
   color: #fff;
   font-size: 15px;
   cursor: pointer;
@@ -269,7 +269,7 @@ body {
 }
 
 .wallet-button:hover {
-  background: linear-gradient(90deg, #0055cc, #9900cc);
+  background: linear-gradient(90deg, #3d1497, #733bea);
   transform: translateY(-3px) scale(1.02); 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
