@@ -163,12 +163,12 @@ body {
   font-weight: 500;
   font-size: 1.1rem;
   position: relative;
-  border-radius: 12px; /* Rounded square for mobile menu items */
+  border-radius: 12px; 
 }
 
 .menu-item:hover {
   color: #00ff99;
-  transform: translateY(-5px); /* 3D hover effect */
+  transform: translateY(-5px);
   background-color: rgba(0, 255, 153, 0.1);
 }
 

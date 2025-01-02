@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import axios from 'axios';
 import { Button, Container, TextField, Typography, Paper, Box, Grid, LinearProgress,Select,MenuItem,InputLabel,FormControl } from '@mui/material';
 import { jsPDF } from 'jspdf';
 import Web3 from 'web3';
@@ -18,8 +19,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 //------Firebase Storage
 
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'; // Import necessary Firebase storage methods
-import { storage } from './firebase.js'; // Import storage from firebase.js
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'; 
+import { storage } from './firebase.js'; 
 
 function App() {
     const [web3, setWeb3] = useState(null);
@@ -39,88 +40,37 @@ function App() {
     const [description, setDescription] = useState('');
     const [summary, setSummary] = useState('');
 
+    //<--New
+    const [metadataURL, setMetadataURL] = useState('');
+    const [mediaURL, setMediaURL] = useState('');
+    const [transactionHash, setTransactionHash] = useState('');
+    const [tokenId, setTokenId] = useState('');
+    const [nftInfo, setNftInfo] = useState(null);
+    const BASE_URL = "https://brown-passive-cattle-71.mypinata.cloud/ipfs/"
 
-    const connectWallet = async () => {
-        if (window.ethereum) {
-            try {
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const web3Instance = new Web3(window.ethereum);
-                setWeb3(web3Instance);
-                setAccount(accounts[0]);
-                console.log("Connected account:", accounts[0]);
-            } catch (error) {
-                console.error("Connection to MetaMask failed:", error);
-            }
-        } else {
-            alert('Please install MetaMask to use this feature.');
-        }
+
+    const handleCopy = (text) => {
+      navigator.clipboard.writeText(text);
+      alert("Copied to clipboard!");
     };
 
-  //   const connectWallet = async () => {
-  //     const walletChoice = prompt("Choose your wallet: 1 for MetaMask (Ethereum), 2 for Petra (Aptos)");
-  
-  //     if (walletChoice === '1') {
-  //         // MetaMask connection
-  //         if (window.ethereum) {
-  //             try {
-  //                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-  //                 const web3Instance = new Web3(window.ethereum);
-  //                 setWeb3(web3Instance);
-  //                 setAccount(accounts[0]);
-  //                 console.log("Connected account (MetaMask):", accounts[0]);
-  //             } catch (error) {
-  //                 console.error("Connection to MetaMask failed:", error);
-  //             }
-  //         } else {
-  //             alert('Please install MetaMask to use this feature.');
-  //         }
-  //     } else if (walletChoice === '2') {
-  //         // Petra Wallet connection
-  //         await connectPetraWallet();
-  //     } else {
-  //         alert('Invalid choice. Please select a valid wallet option.');
-  //     }
-  // };
-  
-  // const connectPetraWallet = async () => {
-  //     if (window.aptos) {
-  //         try {
-  //             const account = await window.aptos.connect();
-  //             const address = account.address;
-  //             setAccount(address);  // Set the connected Petra wallet account
-  //             console.log("Connected account (Petra):", address);
-  //         } catch (error) {
-  //             console.error("Connection to Petra Wallet failed:", error);
-  //             alert('Error connecting to Petra Wallet. Please try again.');
-  //         }
-  //     } else {
-  //         alert('Petra Wallet not detected. Please ensure it is installed and enabled.');
-  //         console.log("Petra Wallet not detected.");
-  //     }
-  // };
-  
-  // // Retry function to check for Petra Wallet after some delay
-  // const retryConnectPetra = (retryCount = 3) => {
-  //     let attempt = 0;
-  
-  //     const checkForPetra = setInterval(async () => {
-  //         if (window.aptos) {
-  //             clearInterval(checkForPetra);  // Stop checking once the wallet is found
-  //             await connectPetraWallet();  // Attempt to connect to Petra
-  //         } else if (attempt >= retryCount) {
-  //             clearInterval(checkForPetra);  // Stop retrying after max attempts
-  //             alert("Petra Wallet not found after multiple attempts.");
-  //         }
-  //         attempt++;
-  //     }, 2000);  // Check every 2 seconds
-  // };
-  
-  // // Call the retry function if wallet not found
-  // if (!window.aptos) {
-  //     console.log("Waiting for Petra Wallet to initialize...");
-  //     retryConnectPetra();
-  // }
-  
+
+
+    // const connectWallet = async () => {
+    //     if (window.ethereum) {
+    //         try {
+    //             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    //             const web3Instance = new Web3(window.ethereum);
+    //             setWeb3(web3Instance);
+    //             setAccount(accounts[0]);
+    //             console.log("Connected account:", accounts[0]);
+    //         } catch (error) {
+    //             console.error("Connection to MetaMask failed:", error);
+    //         }
+    //     } else {
+    //         alert('Please install MetaMask to use this feature.');
+    //     }
+    // };
 
     const hashVideo = async (file) => {
         const arrayBuffer = await file.arrayBuffer();
@@ -139,56 +89,6 @@ function App() {
             setThumbnail(URL.createObjectURL(file));
         }
     };
-
-    // const handleAnalyzeVideo = () => {
-    //     setIsAnalyzing(true);
-    //     setTimeout(() => {
-    //         const approved = Math.random() > 0.5;
-    //         setAnalysisResult(approved ? 'approved' : 'rejected');
-    //         setIsAnalyzing(false);
-    //         setIsAnalysisComplete(true);
-    //     }, 2000);
-    // };
-
-
-  //   const handleAnalyzeVideo = async () => {
-  //     setIsAnalyzing(true);
-  //     try {
-  //         const formData = new FormData();
-  //         formData.append('file', videoFile);
-
-  //         const response = await fetch('http://localhost:8000/upload_video', {
-  //             method: 'POST',
-  //             body: formData,
-  //         });
-
-  //         if (!response.ok) {
-  //             throw new Error('Video analysis failed');
-  //         }
-
-  //         const blob = await response.blob();
-  //         const url = window.URL.createObjectURL(blob);
-  //         const a = document.createElement('a');
-  //         a.style.display = 'none';
-  //         a.href = url;
-  //         a.download = 'video_summary.pdf';
-  //         document.body.appendChild(a);
-  //         a.click();
-  //         window.URL.revokeObjectURL(url);
-
-  //         setDescription("Analysis complete. PDF downloaded.");
-  //         setSummary("Please check the downloaded PDF for detailed information.");
-  //         setAnalysisResult('approved');
-  //         setIsAnalysisComplete(true);
-  //     } catch (error) {
-  //         console.error('Error analyzing video:', error);
-  //         setAnalysisResult('rejected');
-  //         setDescription("Error occurred during analysis.");
-  //         setSummary(error.message);
-  //     } finally {
-  //         setIsAnalyzing(false);
-  //     }
-  // };
 
 
   const handleAnalyzeVideo = async () => {
@@ -257,59 +157,184 @@ const [downloadUrl, setDownloadUrl] = useState(null);
     // };
 
 //----Updated uploadToBlockchain function to upload video to Firebase Storage
-const uploadToBlockchain = async () => {
-    if (web3 && account) {
-        try {
-            const contractAddress = '0xda4bcd87fa9986ea7b0e4c44b183b00917ddeb91';
-            const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-            const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
-                .send({ from: account });
+// const uploadToBlockchain = async () => {
+//     if (web3 && account) {
+//         try {
+//             const contractAddress = '0xda4bcd87fa9986ea7b0e4c44b183b00917ddeb91';
+//             const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-            setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
+//             const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
+//                 .send({ from: account });
 
-            // Upload to Firebase Storage
-            if (videoFile) {
-                const storageRef = ref(storage, `videos/${videoFile.name}`);
-                const uploadTask = uploadBytesResumable(storageRef, videoFile);
+//             setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
 
-                uploadTask.on(
-                    "state_changed",
-                    (snapshot) => {
+//             // Upload to Firebase Storage
+//             if (videoFile) {
+//                 const storageRef = ref(storage, `videos/${videoFile.name}`);
+//                 const uploadTask = uploadBytesResumable(storageRef, videoFile);
+
+//                 uploadTask.on(
+//                     "state_changed",
+//                     (snapshot) => {
                     
-                    },
-                    (error) => {
-                        console.error("Error uploading video to Firebase Storage:", error.message);
-                        setStatus("Error uploading video to Firebase Storage.");
-                    },
-                    async () => {
-                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+//                     },
+//                     (error) => {
+//                         console.error("Error uploading video to Firebase Storage:", error.message);
+//                         setStatus("Error uploading video to Firebase Storage.");
+//                     },
+//                     async () => {
+//                         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
 
-                        // Store metadata in Firestore
-                        await addDoc(collection(db, 'videos'), {
-                            videoHash: videoHash,
-                            caption: caption,
-                            tag: tag,
-                            uploader: uploader,
-                            overview: overview,
-                            // category: category,
-                            videoURL: downloadURL, // Add video URL from Firebase Storage
-                            transactionHash: receipt.transactionHash,
-                            timestamp: new Date()
-                        });
+                        
+//                         await addDoc(collection(db, 'videos'), {
+//                             videoHash: videoHash,
+//                             caption: caption,
+//                             tag: tag,
+//                             uploader: uploader,
+//                             overview: overview,
+//                             videoURL: downloadURL, 
+//                             transactionHash: receipt.transactionHash,
+//                             timestamp: new Date()
+//                         });
 
-                        console.log("Video details stored in Firestore.");
-                    }
-                );
-            }
-        } catch (error) {
-            console.error("Error uploading to blockchain or storing in Firestore:", error.message);
-            setStatus("Error uploading video to the blockchain.");
-        }
-    } else {
-        alert('Connect to MetaMask to interact with the blockchain.');
+//                         console.log("Video details stored in Firestore.");
+//                     }
+//                 );
+//             }
+//         } catch (error) {
+//             console.error("Error uploading to blockchain or storing in Firestore:", error.message);
+//             setStatus("Error uploading video to the blockchain.");
+//         }
+//     } else {
+//         alert('Connect to MetaMask to interact with the blockchain.');
+//     }
+// };
+
+
+//-->New
+
+// const uploadToBlockchain = async () => {
+//   if (!videoFile) {
+//       setStatus('Please select a video file.');
+//       return;
+//   }
+//   setStatus('Uploading to IPFS and blockchain...');
+//    const reader = new FileReader();
+//    reader.readAsDataURL(videoFile);
+//      reader.onloadend = async () => {
+//      const base64String = reader.result;
+//        const metadata = {
+//            title: caption,
+//            uploader: uploader,
+//            tags: tag ? tag.split(",").map(t => t.trim()) : [],
+//            description: overview,
+//        };
+
+//       try {
+//           const response = await axios.post('http://localhost:3001/upload', {
+//                 mediaFile: base64String,
+//                metadata: metadata
+//             });
+//           setMetadataURL(response.data.metadataURL);
+//           setMediaURL(response.data.mediaURL);
+//           setTransactionHash(response.data.txHash);
+//           setStatus(`Successfully uploaded to the blockchain! Metadata URL: ${response.data.metadataURL}, Media URL: ${response.data.mediaURL}, Tx Hash: ${response.data.txHash}`);
+
+//              // Upload to Firebase Storage
+//           if (videoFile) {
+//                const storageRef = ref(storage, `videos/${videoFile.name}`);
+//               const uploadTask = uploadBytesResumable(storageRef, videoFile);
+
+//                 uploadTask.on(
+//                   "state_changed",
+//                 (snapshot) => {
+
+//               },
+//              (error) => {
+//                   console.error("Error uploading video to Firebase Storage:", error.message);
+//                   setStatus("Error uploading video to Firebase Storage.");
+//                 },
+//              async () => {
+//              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+//                  await addDoc(collection(db, 'videos'), {
+//                   videoHash: videoHash,
+//                   caption: caption,
+//                    tag: tag,
+//                    uploader: uploader,
+//                     overview: overview,
+//                    videoURL: downloadURL,
+//                    transactionHash: response.data.txHash,
+//                   timestamp: new Date()
+//                     });
+
+//                console.log("Video details stored in Firestore.");
+//               }
+//              );
+//              }
+
+//       } catch (error) {
+//           console.error('Error uploading to backend:', error);
+//         setStatus('Error uploading to IPFS and blockchain.');
+//      }
+//      };
+// };
+
+const uploadToBlockchain = async () => {
+  if (!videoFile) {
+    setStatus('Please select a video file.');
+    return;
+  }
+  setStatus('Uploading to IPFS and blockchain...');
+  
+  const reader = new FileReader();
+  reader.readAsDataURL(videoFile);
+  
+  reader.onloadend = async () => {
+    const base64String = reader.result;
+    const metadata = {
+      title: caption,
+      uploader: uploader,
+      tags: tag ? tag.split(",").map(t => t.trim()) : [],
+      description: overview,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:3001/upload', {
+        mediaFile: base64String,
+        metadata: metadata
+      });
+      
+      setMetadataURL(response.data.metadataURL);
+      setMediaURL(response.data.mediaURL);
+      setTransactionHash(response.data.txHash);
+      setStatus(`Successfully uploaded to the blockchain! Metadata URL: ${response.data.metadataURL}, Media URL: ${response.data.mediaURL}, Tx Hash: ${response.data.txHash}`);
+      
+    } catch (error) {
+      console.error('Error uploading to backend:', error);
+      setStatus('Error uploading to IPFS and blockchain.');
     }
+  };
 };
+
+
+
+const handleGetNFTInfo = async () => {
+ if (!tokenId) {
+     setStatus("Please enter a token ID.");
+     return;
+ }
+ try{
+     const response = await axios.get(`http://localhost:3001/getNFTInfo/${tokenId}`);
+     setNftInfo(response.data);
+     setStatus("Successfully fetch NFT details")
+ }catch (error){
+     console.error("Error fetching NFT Information", error);
+     setStatus("Error fetching NFT information")
+ }
+}
+
 
 
 const generatePDF = () => {
@@ -396,6 +421,8 @@ const doc = new jsPDF();
 
 
 
+
+
     return (
 <Container 
   component="main" 
@@ -424,7 +451,7 @@ const doc = new jsPDF();
     color: 'white',
   }}
 >
-  Newschain Tracker
+  News Analyzer
 </Typography>
 <Button
     variant="contained"
@@ -476,7 +503,7 @@ const doc = new jsPDF();
         },
     }}
 >
-    Upload Video
+    Upload News Data
     <input type="file" hidden onChange={handleVideoUpload} />
 </Button>
 
@@ -885,18 +912,159 @@ const doc = new jsPDF();
                             </Typography> 
                         )}
 
-                        {status && (
-                            <Box sx={{ p: 1.5, borderRadius: '8px', backgroundColor: '#333', color: 'white', mt: 2 }}>
-                                <Typography variant="body2" align="center">
-                                    {status}
-                                </Typography>
-                            </Box>
-                        )}
+{status && (
+    <Box
+    sx={{
+      p: 3,
+      borderRadius: '12px',
+      backgroundColor: '#2c2c3d',
+      color: '#f0f0f0',
+      mt: 3,
+      boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+      maxWidth: '600px',
+      mx: 'auto',
+    }}
+  >
+    <Typography variant="h6" align="center" sx={{ mb: 2, color: '#ffffff', fontWeight: 'bold' }}>
+      Status Update
+    </Typography>
+  
+    <Box sx={{ mb: 2 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: '#4caf50',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          textAlign: 'left',
+          marginBottom: '8px',
+        }}
+      >
+        Metadata URL:
+      </Typography>
+      <a
+        href={metadataURL}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'block',
+          color: '#4caf50',
+          textDecoration: 'none',
+          fontSize: '12px',
+          wordBreak: 'break-word',
+          lineHeight: 1.4,
+          marginBottom: '16px',
+        }}
+      >
+        {metadataURL}
+      </a>
+    </Box>
+  
+    <Box sx={{ mb: 2 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: '#4caf50',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          textAlign: 'left',
+          marginBottom: '8px',
+        }}
+      >
+        Media URL:
+      </Typography>
+      <a
+        href={mediaURL}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'block',
+          color: '#4caf50',
+          textDecoration: 'none',
+          fontSize: '12px',
+          wordBreak: 'break-word',
+          lineHeight: 1.4,
+          marginBottom: '16px',
+        }}
+      >
+        {mediaURL}
+      </a>
+    </Box>
+  
+    <Box sx={{ mb: 2 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: '#4caf50',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          textAlign: 'left',
+          marginBottom: '8px',
+        }}
+      >
+        Tx Hash:
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          color: '#f0f0f0',
+          fontSize: '12px',
+          wordBreak: 'break-word',
+          lineHeight: 1.4,
+          marginBottom: '16px',
+        }}
+      >
+        {transactionHash}
+      </Typography>
+    </Box>
+    <Box
+      sx={{
+        mt: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 1.5,
+      }}
+    >
+      {metadataURL && (
+        <a
+          href={`${BASE_URL}${metadataURL.split('/').pop()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            textDecoration: 'none',
+            color: '#4caf50',
+            fontWeight: '500',
+            fontSize: '0.9rem',
+          }}
+        >
+          View Metadata
+        </a>
+      )}
+      {mediaURL && (
+        <a
+          href={`${BASE_URL}${mediaURL.split('/').pop()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            textDecoration: 'none',
+            color: '#4caf50',
+            fontWeight: '500',
+            fontSize: '0.9rem',
+          }}
+        >
+          View Media
+        </a>
+      )}
+    </Box>
+  </Box>
+
+)}
+
                     </Paper>
                 </Grid>
             </Grid>
             {/* <Navbar connectWallet={connectWallet} /> */}
-            <Navbar account={account} connectWallet={connectWallet} />
+            {/* <Navbar account={account} connectWallet={connectWallet} /> */}
         </Container>
     );
 }
