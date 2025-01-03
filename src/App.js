@@ -49,13 +49,6 @@ function App() {
     const BASE_URL = "https://brown-passive-cattle-71.mypinata.cloud/ipfs/"
 
 
-    const handleCopy = (text) => {
-      navigator.clipboard.writeText(text);
-      alert("Copied to clipboard!");
-    };
-
-
-
     // const connectWallet = async () => {
     //     if (window.ethereum) {
     //         try {
@@ -124,37 +117,6 @@ function App() {
 };
 const [downloadUrl, setDownloadUrl] = useState(null);
 
-    // const uploadToBlockchain = async () => {
-    //     if (web3 && account) {
-    //         try {
-    //             const contractAddress = '0x16726d44f6b1ed8145c407e2950e15e0a03b9ade';
-    //             const contract = new web3.eth.Contract(contractABI, contractAddress);
-
-    //             const receipt = await contract.methods.uploadVideo(videoHash, caption, tag)
-    //                 .send({ from: account });
-
-    //             setStatus(`Transaction successful! Tx Hash: ${receipt.transactionHash}`);
-
-    //             await addDoc(collection(db, 'videos'), {
-    //                 videoHash: videoHash,
-    //                 caption: caption,
-    //                 tag: tag,
-    //                 uploader: uploader,
-    //                 overview: overview,
-    //                 category,
-    //                 transactionHash: receipt.transactionHash,
-    //                 timestamp: new Date()
-    //             });
-
-    //             console.log("Video details stored in Firestore.");
-    //         } catch (error) {
-    //             console.error("Error uploading to blockchain or storing in Firestore:", error.message);
-    //             setStatus("Error uploading video to the blockchain.");
-    //         }
-    //     } else {
-    //         alert('Connect to MetaMask to interact with the blockchain.');
-    //     }
-    // };
 
 //----Updated uploadToBlockchain function to upload video to Firebase Storage
 
@@ -281,6 +243,43 @@ const [downloadUrl, setDownloadUrl] = useState(null);
 //      };
 // };
 
+// const uploadToBlockchain = async () => {
+//   if (!videoFile) {
+//     setStatus('Please select a video file.');
+//     return;
+//   }
+//   setStatus('Uploading to IPFS and blockchain...');
+  
+//   const reader = new FileReader();
+//   reader.readAsDataURL(videoFile);
+  
+//   reader.onloadend = async () => {
+//     const base64String = reader.result;
+//     const metadata = {
+//       title: caption,
+//       uploader: uploader,
+//       tags: tag ? tag.split(",").map(t => t.trim()) : [],
+//       description: overview,
+//     };
+
+//     try {
+//       const response = await axios.post('http://localhost:3001/upload', {
+//         mediaFile: base64String,
+//         metadata: metadata
+//       });
+      
+//       setMetadataURL(response.data.metadataURL);
+//       setMediaURL(response.data.mediaURL);
+//       setTransactionHash(response.data.txHash);
+//       setStatus(`Successfully uploaded to the blockchain! Metadata URL: ${response.data.metadataURL}, Media URL: ${response.data.mediaURL}, Tx Hash: ${response.data.txHash}`);
+      
+//     } catch (error) {
+//       console.error('Error uploading to backend:', error);
+//       setStatus('Error uploading to IPFS and blockchain.');
+//     }
+//   };
+// };
+
 const uploadToBlockchain = async () => {
   if (!videoFile) {
     setStatus('Please select a video file.');
@@ -310,13 +309,27 @@ const uploadToBlockchain = async () => {
       setMediaURL(response.data.mediaURL);
       setTransactionHash(response.data.txHash);
       setStatus(`Successfully uploaded to the blockchain! Metadata URL: ${response.data.metadataURL}, Media URL: ${response.data.mediaURL}, Tx Hash: ${response.data.txHash}`);
-      
+
+      // Store details in Firestore
+      await addDoc(collection(db, 'videos'), {
+        videoHash: response.data.mediaURL, // Assuming mediaURL from backend is a unique hash
+        caption: caption,
+        tag: tag,
+        uploader: uploader,
+        overview: overview,
+        transactionHash: response.data.txHash,
+        timestamp: new Date()
+      });
+
+      console.log("Video details stored in Firestore.");
+
     } catch (error) {
       console.error('Error uploading to backend:', error);
       setStatus('Error uploading to IPFS and blockchain.');
     }
   };
 };
+
 
 
 

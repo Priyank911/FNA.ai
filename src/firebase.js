@@ -47,7 +47,7 @@ const firebaseConfig = {
   projectId: "fnaai-72712",
   storageBucket: "fnaai-72712.firebasestorage.app",
   messagingSenderId: "983084993518",
-  appId: "1:983084993518:web:a1b08cc763ba533c1c5cff"
+  appId: "1:983084993518:web:facf2449d40134eb1c5cff"
 };
 
 const app = initializeApp(firebaseConfig);
