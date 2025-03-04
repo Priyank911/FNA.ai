@@ -109,6 +109,7 @@
 // };
 
 // export default HistoryPage;
+
 import React, { useState, useEffect } from 'react';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from './firebase';

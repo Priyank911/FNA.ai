@@ -42,14 +42,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC5BmaWej7VUfzeA01RhL_S8oER_1M3v74",
-  authDomain: "fnaai-72712.firebaseapp.com",
-  projectId: "fnaai-72712",
-  storageBucket: "fnaai-72712.firebasestorage.app",
-  messagingSenderId: "983084993518",
-  appId: "1:983084993518:web:facf2449d40134eb1c5cff"
+  apiKey: "AIzaSyC30OywaJlkOJVyx9WYtU1XvWnxBhcw5Og",
+  authDomain: "fnaai-1c002.firebaseapp.com",
+  projectId: "fnaai-1c002",
+  storageBucket: "fnaai-1c002.appspot.com",
+  messagingSenderId: "1076450820888",
+  appId: "1:1076450820888:web:ba426401d4f1a0d3f0546d"
 };
-
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);

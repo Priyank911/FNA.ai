@@ -204,10 +204,101 @@
 
 
 
+// import React, { useState, useEffect } from 'react';
+// import ReactDOM from 'react-dom/client';
+// import { BrowserRouter as Router, Routes, Route, Navigate  } from 'react-router-dom';
+// import Navbar from './Navbar'; 
+// import Footer from './Footer';
+// import App from './App';
+// import About from './About';
+// import Extension from './Extension';
+// import './index.css';
+// import HistoryPage from './HistoryPage';
+// import ChatWidget from './ChatWidget';
+// import VideoApiChecket from './videoapichecker'
+// import ContactSupport from './ContactSupport';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+// import LoginPage from './components/LoginPage'; // Import Login page
+// import RegisterPage from './components/RegisterPage'; // Import Register page
+// import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+
+// const MobilePopup = () => {
+//   const [showPopup, setShowPopup] = useState(false);
+
+//   useEffect(() => {
+//     const handleResize = () => {
+      
+//       const isPopupClosed = sessionStorage.getItem('popupClosed');
+//       if (!isPopupClosed && window.innerWidth <= 768) {
+//         setShowPopup(true);
+//       } else {
+//         setShowPopup(false);
+//       }
+//     };
+
+//     window.addEventListener('resize', handleResize);
+//     handleResize(); 
+//     return () => {
+//       window.removeEventListener('resize', handleResize);
+//     };
+//   }, []);
+
+//   const closePopup = () => {
+//     setShowPopup(false);
+//     sessionStorage.setItem('popupClosed', 'true'); 
+//   };
+
+//   return (
+//     showPopup && (
+//       <div className="popup">
+//         <div className="popup-content">
+//           <span className="close-popup" onClick={closePopup}>✖</span>
+          
+//           <div className="icon-box">
+//             <FontAwesomeIcon icon={faMobileAlt} className="call-icon" />
+//           </div>
+          
+//           <p className="name">FNA.ai</p> 
+          
+//           <p className="message">Innovative AI Solutions. For the best experience, use a desktop.</p>
+          
+//           <button className="button-robotic"><span>Contact Us</span></button> 
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <Router>
+//     <AuthProvider>
+//       <Navbar />
+//      <ChatWidget /> {}
+//       <MobilePopup />
+//       <Routes>
+//         <Route path="/" element={<App />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/extension" element={<Extension />} />
+//         <Route path="/history" element={<HistoryPage />} />
+//         <Route path="/contactsupport" element={<ContactSupport />} />
+//         <Route path="/VideoApiChecker" element={<VideoApiChecket />} />
+//         <Route path="/login" element={<LoginPage />} />
+//         <Route path="/register" element={<RegisterPage />} />
+        
+//       </Routes>
+//       <Footer />
+//       </AuthProvider>
+//     </Router>
+//   </React.StrictMode>
+// );
+
+
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar'; 
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'; // Import useLocation
+import Navbar from './Navbar';
 import Footer from './Footer';
 import App from './App';
 import About from './About';
@@ -215,71 +306,94 @@ import Extension from './Extension';
 import './index.css';
 import HistoryPage from './HistoryPage';
 import ChatWidget from './ChatWidget';
+import VideoApiChecket from './videoapichecker'
 import ContactSupport from './ContactSupport';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import LoginPage from './components/LoginPage'; // Import Login page
+import RegisterPage from './components/RegisterPage'; // Import Register page
+import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 
 const MobilePopup = () => {
-  const [showPopup, setShowPopup] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      
-      const isPopupClosed = sessionStorage.getItem('popupClosed');
-      if (!isPopupClosed && window.innerWidth <= 768) {
-        setShowPopup(true);
-      } else {
+    useEffect(() => {
+        const handleResize = () => {
+
+            const isPopupClosed = sessionStorage.getItem('popupClosed');
+            if (!isPopupClosed && window.innerWidth <= 768) {
+                setShowPopup(true);
+            } else {
+                setShowPopup(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const closePopup = () => {
         setShowPopup(false);
-      }
+        sessionStorage.setItem('popupClosed', 'true');
     };
 
-    window.addEventListener('resize', handleResize);
-    handleResize(); 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    return (
+        showPopup && (
+            <div className="popup">
+                <div className="popup-content">
+                    <span className="close-popup" onClick={closePopup}>✖</span>
 
-  const closePopup = () => {
-    setShowPopup(false);
-    sessionStorage.setItem('popupClosed', 'true'); 
-  };
+                    <div className="icon-box">
+                        <FontAwesomeIcon icon={faMobileAlt} className="call-icon" />
+                    </div>
 
-  return (
-    showPopup && (
-      <div className="popup">
-        <div className="popup-content">
-          <span className="close-popup" onClick={closePopup}>✖</span>
-          
-          <div className="icon-box">
-            <FontAwesomeIcon icon={faMobileAlt} className="call-icon" />
-          </div>
-          
-          <p className="name">FNA.ai</p>  {/* Name moved below the icon box */}
-          
-          <p className="message">Innovative AI Solutions. For the best experience, use a desktop.</p>
-          
-          <button className="button-robotic"><span>Contact Us</span></button> {/* Robotic-themed Contact Us button */}
-        </div>
-      </div>
-    )
-  );
+                    <p className="name">FNA.ai</p>
+
+                    <p className="message">Innovative AI Solutions. For the best experience, use a desktop.</p>
+
+                    <button className="button-robotic"><span>Contact Us</span></button>
+                </div>
+            </div>
+        )
+    );
 };
 
+function AppLayout({ children }) {
+    const location = useLocation();
+    const showHeaderFooter = !(location.pathname === '/login' || location.pathname === '/register'); // Conditional check
+    return (
+        <>
+            {showHeaderFooter && <Navbar />}
+            {children}
+            {showHeaderFooter && <Footer />}
+            {showHeaderFooter && <ChatWidget />}
+        </>
+    );
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Router>
-      <Navbar />
-     <ChatWidget /> {}
-      <MobilePopup />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/extension" element={<Extension />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/contactsupport" element={<ContactSupport />} />
-      </Routes>
-      <Footer />
-    </Router>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Router>
+        <ChatWidget /> {}
+            <AuthProvider>
+                <AppLayout>
+                    <Routes>
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/" element={<App />} />
+                        {/* <Route path="/" element={localStorage.getItem('token') ? <App /> : <Navigate to="/login" />} /> */}
+                        <Route path="/about" element={<About />} />
+                        <Route path="/extension" element={<Extension />} />
+                        <Route path="/history" element={<HistoryPage />} />
+                        <Route path="/contactsupport" element={<ContactSupport />} />
+                        <Route path="/VideoApiChecker" element={<VideoApiChecket />} />
+
+                    </Routes>
+                </AppLayout>
+            </AuthProvider>
+        </Router>
+    </React.StrictMode>
 );

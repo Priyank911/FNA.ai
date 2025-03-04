@@ -1,0 +1,139 @@
+
+.register-container {
+  display: flex;
+  width: 1200px;
+  height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.register-left {
+  flex: 1;
+  background: url('/public/avatar/Priyank.jpg') center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.carousel-indicators {
+  display: flex;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  margin: 0 5px;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.active {
+  opacity: 1;
+}
+
+.register-right {
+  flex: 1;
+  background: #16162b;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background: #2b2b4e;
+  color: white;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.register-button {
+  width: 100%;
+  background: #6c5ce7;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.divider {
+  margin: 20px 0;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.google, .apple {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
