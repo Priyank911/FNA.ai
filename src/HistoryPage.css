@@ -1,4 +1,4 @@
-.history-item {
+/* .history-item {
     transform-style: preserve-3d;
     perspective: 1000px;
     transition: transform 0.6s ease-out, box-shadow 0.4s ease;
@@ -28,7 +28,6 @@
     border-radius: 10px;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 600px) {
     .history-item {
       flex-direction: column;
@@ -36,4 +35,73 @@
       min-height: 250px;
     }
   }
+   */
+
+   .history-item {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.6s ease-out, box-shadow 0.4s ease;
+  }
   
+  .history-item:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  .history-item h5, .history-item h6 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f5f5f5;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .history-item p {
+    font-size: 0.9rem;
+    color: #ddd;
+  }
+  
+  /* Download button styling */
+  .download-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .download-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+  }
+  
+  /* Grid background */
+  .grid-background {
+    background-color: #000;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9) 1px, transparent 1px), 
+                     linear-gradient(90deg, rgba(0, 0, 0, 0.9) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .history-item {
+      flex-direction: column !important;
+    }
+    
+    .history-item .thumbnail-container {
+      width: 100% !important;
+      height: 120px !important;
+      border-right: none !important;
+      border-bottom: 1px solid #444 !important;
+    }
+    
+    .download-button span {
+      display: none;
+    }
+  }
