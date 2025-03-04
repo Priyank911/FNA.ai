@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# FNA.ai - Fake News Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <!-- Place your project logo here -->
+  <img src="https://github.com/Priyank911/FNA.ai/blob/main/src/logo.png" alt="FNA.ai Logo" width="200">
+</div>
 
-## Available Scripts
 
-In the project directory, you can run:
+## 🌟 Overview
 
-### `npm start`
+**FNA.ai (Fake News Analyzer)** is an innovative platform designed to combat misinformation. By harnessing cutting-edge technology, we ensure the authenticity of news content across images, videos, and textual formats. Our solution integrates **AI and blockchain** to provide scalable, secure, and immutable verification processes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🏗 Project Structure
 
-### `npm test`
+### 1. 🔍 **Deepfake Checking**
+Our platform employs advanced AI models to analyze and flag tampered or manipulated media, safeguarding the authenticity of uploaded content.  
+**Dataset Used:** The model is trained on the **Fake AVCeleb dataset**, ensuring high accuracy in identifying deepfake content.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. ✍️ **News Summarization**
+- **Input:** Upload news content in **image** or **video** format.
+- **Processing:** The platform generates concise summaries using **FastAPI**.
+- **Output:** A clear and digestible summary is provided for quick understanding.
 
-### `npm run build`
+**📂 FastAPI Summarization Code:** [GitHub Repository](https://github.com/Priyank911/FNA_Summarizer.git)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. ✅ **News Verification**
+- Summarized content is compared with trusted news websites.
+- If the description matches verified sources, the news is marked **real**; otherwise, it is flagged as **fake**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔗 Blockchain & Web3 Integration
 
-### `npm run eject`
+### How It Works:
+1. **Base64 Encoding:** Verified news is converted into Base64 format.
+2. **IPFS Storage:** The encoded data is stored on **IPFS** for decentralized, scalable storage.
+3. **Pinata Integration:** Ensures persistent storage of IPFS content.
+4. **NFT Creation:** Converts verified content into **NFTs (Non-Fungible Tokens)**.
+5. **Polygon Blockchain:** Stores NFTs securely, ensuring **immutability and scalability**.
+6. **Smart Contracts:** Automate the verification and validation process via **Polygon’s PoS mechanism**.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**📂 Node.js Blockchain Code:** [GitHub Repository](https://github.com/Priyank911/FNA-Backend.git)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🌟 Key Features
+- **AI-Powered Deepfake Detection:** Detects and flags tampered media.
+- **Efficient Summarization:** Generates summaries for better readability.
+- **Trusted Verification:** Matches news content with verified sources.
+- **Secure Decentralized Storage:** **IPFS & Pinata** ensure data integrity.
+- **Immutable Proof:** **Polygon Blockchain** ensures transparency & tamper-proof records.
+- **Web3-Enabled Trust Badge:** Verified news receives a blockchain-backed credibility badge.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🚀 Technologies Used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Category                 | Technologies Used                               |
+|--------------------------|-----------------------------------------------|
+| **Deepfake Detection**   | TensorFlow, OpenCV                            |
+| **News Summarization**   | FastAPI                                      |
+| **Blockchain**           | Node.js, **Polygon**, Solidity, Smart Contracts |
+| **Decentralized Storage** | **IPFS, Pinata**                              |
+| **Front-End Framework**  | React                                        |
+| **API Integrations**     | NewsAPI, YouTube API                         |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🛠 Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Priyank911/FNA.ai.git
+   ```
+2. **Set Up the Environment:**
+   - Install dependencies for each module as per their documentation.
+   - Obtain API keys for **NewsAPI, YouTube API, and Pinata**.
+3. **Run the Services:**
+   - **Summarization:** Navigate to the FastAPI folder and start the service.
+   - **Blockchain Integration:** Navigate to the Node.js folder and start the backend.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🚧 Future Enhancements
+- **Real-time AI analysis** with enhanced deepfake detection models.
+- **Decentralized Fact-Checking Community** leveraging DAOs on **Polygon**.
+- **Multi-language Support** for diverse misinformation detection.
+- **Enhanced UI/UX** for a seamless, interactive experience.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🤝 Contributing
+We encourage contributions to improve **FNA.ai**! Follow the standard [GitHub Flow](https://guides.github.com/introduction/flow/) for submitting issues and pull requests.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📜 License
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🙌 Acknowledgements
+- **Fake AVCeleb Dataset**: Training the deepfake detection model.
+- **IPFS & Pinata**: Providing decentralized storage solutions.
+- **Polygon Blockchain**: Ensuring scalable, trustless verification.
+- **FastAPI**: Enabling efficient backend processing.
+- **TensorFlow**: Powering AI-driven analysis.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div align="center">
+  <strong>Join us in creating a trustworthy news ecosystem with FNA.ai! 🚀</strong>
+</div>
+
