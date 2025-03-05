@@ -787,7 +787,7 @@ const HistoryPage = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 minHeight: '100vh',
-                backgroundColor: '#000',
+                // backgroundColor: '#000',
                 backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.9) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.9) 1px, transparent 1px)',
                 backgroundSize: '20px 20px',
             }}
