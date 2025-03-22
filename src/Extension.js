@@ -20,7 +20,7 @@ const StyledContainer = styled(Box)(({ theme }) => ({
     right: 0,
     width: '40%',
     height: '100%',
-    background: 'linear-gradient(135deg, rgba(139,0,0,0.1) 0%, rgba(0,0,0,0) 100%)',
+    background: 'linear-gradient(135deg, rgba(115, 59, 234, 0.1) 0%, rgba(61, 20, 151, 0) 100%)',
     zIndex: 0,
   }
 }));
@@ -32,38 +32,38 @@ const FeatureCard = styled(motion.div)(({ theme }) => ({
   borderRadius: '20px',
   position: 'relative',
   overflow: 'hidden',
-  border: '1px solid rgba(255,255,255,0.1)',
+  border: '1px solid rgba(115, 59, 234, 0.1)',
   transition: 'all 0.3s ease',
   '&::before': {
     content: '""',
     position: 'absolute',
     inset: 0,
-    background: 'linear-gradient(125deg, rgba(255,0,0,0.1) 0%, transparent 70%)',
+    background: 'linear-gradient(125deg, rgba(115, 59, 234, 0.1) 0%, transparent 70%)',
     opacity: 0,
     transition: 'opacity 0.3s ease',
   },
   '&:hover': {
     transform: 'translateY(-10px)',
-    border: '1px solid rgba(255,0,0,0.3)',
+    border: '1px solid rgba(115, 59, 234, 0.3)',
     '&::before': {
       opacity: 1,
     }
   },
   '.feature-icon': {
     fontSize: '3rem',
-    color: '#ff0000',
+    color: '#733bea',
     marginBottom: '1rem',
     transition: 'all 0.3s ease',
   },
   '&:hover .feature-icon': {
     transform: 'scale(1.1)',
-    color: '#ffffff',
+    color: '#733bea',
   }
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   padding: '1rem 2rem',
-  background: 'linear-gradient(45deg, #ff0000, #ff4444)',
+  background: 'linear-gradient(90deg, #733bea, #3d1497)',
   color: '#ffffff',
   borderRadius: '8px',
   fontSize: '1rem',
@@ -80,13 +80,13 @@ const StyledButton = styled(Button)(({ theme }) => ({
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent)',
+    background: 'linear-gradient(90deg, rgba(115, 59, 234, 0.2), rgba(61, 20, 151, 0.2))',
     transform: 'translateX(-100%)',
     transition: 'transform 0.5s ease',
   },
   '&:hover': {
     transform: 'translateY(-3px)',
-    boxShadow: '0 10px 20px rgba(255,0,0,0.2)',
+    boxShadow: '0 10px 20px rgba(115, 59, 234, 0.2)',
     '&::before': {
       transform: 'translateX(100%)',
     }
@@ -100,7 +100,7 @@ const StepCard = styled(motion.div)(({ theme }) => ({
   borderRadius: '15px',
   position: 'relative',
   overflow: 'hidden',
-  border: '1px solid rgba(255,255,255,0.1)',
+  border: '1px solid rgba(115, 59, 234, 0.1)',
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -108,8 +108,8 @@ const StepCard = styled(motion.div)(({ theme }) => ({
     left: 0,
     width: '2px',
     height: '100%',
-    background: '#ff0000',
-    boxShadow: '0 0 10px #ff0000',
+    background: '#733bea',
+    boxShadow: '0 0 10px rgba(115, 59, 234, 0.5)',
   }
 }));
 
@@ -119,14 +119,14 @@ const StyledModal = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     background: '#0A0A0A',
-    border: '1px solid rgba(255,255,255,0.1)',
+    border: '1px solid rgba(115, 59, 234, 0.1)',
     borderRadius: '20px',
     padding: '2rem',
     maxWidth: '500px',
     width: '90%',
     color: '#ffffff',
     backdropFilter: 'blur(10px)',
-    boxShadow: '0 25px 50px rgba(0,0,0,0.5)',
+    boxShadow: '0 25px 50px rgba(115, 59, 234, 0.15)',
   },
   overlay: {
     backgroundColor: 'rgba(0,0,0,0.8)',
@@ -171,7 +171,7 @@ const ExtensionPage = () => {
             <Typography 
               variant="overline" 
               sx={{ 
-                color: '#ff0000', 
+                color: '#733bea', 
                 letterSpacing: 4,
                 mb: 2,
                 display: 'block'
@@ -184,7 +184,7 @@ const ExtensionPage = () => {
               sx={{ 
                 fontWeight: 300,
                 mb: 3,
-                background: 'linear-gradient(45deg, #ffffff, #ff0000)',
+                background: '#ffffff',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -270,7 +270,7 @@ const ExtensionPage = () => {
                 sx={{ 
                   mb: 6,
                   textAlign: 'center',
-                  background: 'linear-gradient(45deg, #ffffff, #ff0000)',
+                  background: 'linear-gradient(90deg, #733bea, #3d1497)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -299,7 +299,7 @@ const ExtensionPage = () => {
                           variant="h5" 
                           sx={{ 
                             mb: 2,
-                            color: '#ff0000',
+                            color: '#ffffff',
                             fontWeight: 'bold'
                           }}
                         >
@@ -344,7 +344,7 @@ const ExtensionPage = () => {
           variant="h4" 
           sx={{ 
             mb: 4,
-            background: 'linear-gradient(45deg, #ffffff, #ff0000)',
+            background: 'linear-gradient(90deg, #733bea, #3d1497)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
@@ -372,7 +372,7 @@ const ExtensionPage = () => {
                 width: '6px',
                 height: '6px',
                 borderRadius: '50%',
-                backgroundColor: '#ff0000',
+                backgroundColor: '#733bea',
                 display: 'inline-block',
                 marginRight: '10px'
               }

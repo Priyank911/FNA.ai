@@ -192,11 +192,21 @@ class Navbar extends React.Component {
               </a>
             </nav>
             <div className="menu-footer">
-              <p className="footer-text">Stay Connected</p>
+              <div className="footer-links-container">
+                <div className="footer-row">
+                  <Link to="/about" className="footer-link" onClick={() => this.closeMenu()}>About Us</Link>
+                  <Link to="/contact" className="footer-link" onClick={() => this.closeMenu()}>Contact Us</Link>
+                </div>
+                <div className="footer-row">
+                  <Link to="/learn" className="footer-link yellow-text" onClick={() => this.closeMenu()}>Learn More</Link>
+                  <Link to="/touch" className="footer-link yellow-text" onClick={() => this.closeMenu()}>Get In Touch</Link>
+                </div>
+              </div>
               <div className="social-icons">
-                <a href="#"><i className="fab fa-facebook-f"></i></a>
-                <a href="#"><i className="fab fa-twitter"></i></a>
-                <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
               </div>
             </div>
           </Menu>

@@ -8,6 +8,7 @@ const StyledContainer = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
   position: 'relative',
   overflow: 'hidden',
+  paddingTop: '20px',
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -289,14 +290,26 @@ const About = () => {
 
   return (
     <StyledContainer>
-      <Container maxWidth="lg" sx={{ pt: { xs: 8, md: 12 }, pb: 8 }}>
+      <Container 
+        maxWidth="lg" 
+        sx={{ 
+          pt: { xs: 4, md: 12 }, 
+          pb: 8,
+          px: { xs: 2, sm: 3, md: 4 },
+          overflow: 'hidden',
+          '@media (max-width: 370px)': {
+            px: 1.5,
+          }
+        }}
+      >
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          style={{ width: '100%' }}
         >
           {/* Hero Section */}
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} style={{ width: '100%' }}>
             <Typography 
               variant="overline" 
               component={motion.div}
@@ -304,11 +317,15 @@ const About = () => {
                 color: '#ff0000', 
                 letterSpacing: 4,
                 mb: 2,
-                display: 'block'
+                display: 'block',
+                '@media (max-width: 370px)': {
+                  fontSize: '0.7rem',
+                  letterSpacing: 3,
+                }
               }}
             >
               ABOUT US
-        </Typography>
+            </Typography>
             <Typography 
               variant="h2" 
               component={GlowingText}
@@ -318,23 +335,34 @@ const About = () => {
                 background: 'linear-gradient(45deg, #ffffff, #ff0000)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                '@media (max-width: 370px)': {
+                  fontSize: '1.8rem',
+                  lineHeight: 1.3,
+                }
               }}
             >
               FNA.ai<br />
               Premier platform<br />
               Authenticating digital content
-              </Typography>
+            </Typography>
             <Typography 
               variant="body1" 
               sx={{
                 color: 'rgba(255,255,255,0.7)',
                 maxWidth: '600px',
                 mb: 8,
-                lineHeight: 1.8
+                lineHeight: 1.8,
+                fontSize: { xs: '0.9rem', sm: '1rem' },
+                '@media (max-width: 370px)': {
+                  fontSize: '0.85rem',
+                  lineHeight: 1.6,
+                  mb: 4,
+                }
               }}
             >
               Founded to combat misinformation, FNA.ai specializes in AI-powered deepfake detection, content summarization, and blockchain-based verification. The platform offers a full-service solution, including media analysis, decentralized storage, NFT creation, and immutable proof of authenticity. With FNA.ai, users can trust the credibility of news content through transparent and verifiable validation.
-              </Typography>
+            </Typography>
           </motion.div>
 
           {/* Features Section */}
