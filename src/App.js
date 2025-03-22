@@ -16,7 +16,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import CircularProgress from '@mui/material/CircularProgress';
 import Preloader from './Preloader';
 
-
+import { useLocation } from "react-router-dom";
 
 //------Firebase Storage
 
@@ -51,18 +51,25 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
 
     const [isFadingOut, setIsFadingOut] = useState(false); 
+    const location = useLocation();
 
     useEffect(() => {
-        
-        const timer = setTimeout(() => {
-            setIsFadingOut(true); 
-            setTimeout(() => {
-                setIsLoading(false); 
-            }, 800); 
-        }, 5000); 
+      const hasVisited = localStorage.getItem("hasVisited");
 
-        return () => clearTimeout(timer); 
-    }, []);
+      // Only show preloader on first visit or refresh
+      if (!hasVisited || location.key === "default") {
+          localStorage.setItem("hasVisited", "true");
+          
+          const timer = setTimeout(() => {
+              setIsLoading(false);
+          }, 5000);
+
+          return () => clearTimeout(timer);
+      } else {
+          // Skip preloader on revisits or when coming back from other pages
+          setIsLoading(false);
+      }
+  }, [location]);
 
 
     const hashVideo = async (file) => {
