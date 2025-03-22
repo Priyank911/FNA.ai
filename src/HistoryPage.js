@@ -345,7 +345,7 @@ const HistoryPage = () => {
 
   const handleDownload = (videoHash) => {
     if (videoHash) {
-      const ipfsGateway = 'https://brown-passive-cattle-71.mypinata.cloud/ipfs/';
+      const ipfsGateway = 'https://jade-quick-haddock-516.mypinata.cloud/ipfs/';
       const downloadUrl = `${ipfsGateway}${videoHash.split('/').pop()}`;
 
       const a = document.createElement('a');

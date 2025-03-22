@@ -47,7 +47,7 @@ function App() {
     const [transactionHash, setTransactionHash] = useState('');
     const [tokenId, setTokenId] = useState('');
     const [nftInfo, setNftInfo] = useState(null);
-    const BASE_URL = "https://brown-passive-cattle-71.mypinata.cloud/ipfs/"
+    const BASE_URL = "https://jade-quick-haddock-516.mypinata.cloud/ipfs/"
     const [isLoading, setIsLoading] = useState(true);
 
     const [isFadingOut, setIsFadingOut] = useState(false); 
