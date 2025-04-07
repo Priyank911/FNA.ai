@@ -386,10 +386,16 @@
   }
 }
 
+/* Mobile-specific styles */
 @media (max-width: 480px) {
-  .chat-box {
-    width: 100%;
-    height: 100vh;
-    border-radius: 0;
+  .chatbot-button {
+    position: fixed;
+    bottom: 90px; /* Push it up a bit above the chat box */
+    right: 12px;  /* Move to right */
+    left: auto !important; /* Ensure it’s not stuck left */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
