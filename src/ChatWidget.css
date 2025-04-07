@@ -1,193 +1,395 @@
-/* Chatbot container and box styling */
+/* Ultra Modern 3D Chatbot Styling */
+:root {
+  --primary: #2A2FFF;
+  --secondary: #00E6E6;
+  --accent: #FF3366;
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-dark: rgba(0, 0, 0, 0.05);
+}
+
 .chat-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
+  perspective: 2000px;
 }
 
+/* Compact Chat Box */
 .chat-box {
-  width: 320px;
-  height: 450px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  height: 400px;
+  background: rgba(10, 10, 15, 0.97);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(42, 47, 255, 0.2),
+    inset 0 0 80px rgba(0, 230, 230, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: hidden;
-  animation: slideUp 0.3s ease;
+  transform-origin: bottom right;
+  animation: boxAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+@keyframes boxAppear {
+  0% {
+    opacity: 0;
+    transform: perspective(2000px) rotateX(-45deg) rotateY(45deg) scale(0.7) translateY(100px);
+  }
+  50% {
+    transform: perspective(2000px) rotateX(25deg) rotateY(-15deg) scale(0.8) translateY(50px);
+  }
+  75% {
+    transform: perspective(2000px) rotateX(-15deg) rotateY(5deg) scale(0.9) translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(2000px) rotateX(0) rotateY(0) scale(1) translateY(0);
+  }
+}
+
+/* 3D Holographic Toggle Button */
+.chat-toggle-btn {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  padding: 0;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggle-animation {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: floatButton 8s ease-in-out infinite;
+}
+
+@keyframes floatButton {
+  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0) scale(1); }
+  25% { transform: translateY(-8px) rotateX(15deg) rotateY(15deg) scale(1.05); }
+  50% { transform: translateY(4px) rotateX(-10deg) rotateY(-15deg) scale(0.95); }
+  75% { transform: translateY(-4px) rotateX(10deg) rotateY(10deg) scale(1.02); }
+}
+
+.sphere-outer {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  animation: rotateSphere 8s linear infinite;
+}
+
+.sphere-inner {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+  overflow: hidden;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { filter: brightness(1) contrast(1) hue-rotate(0deg); }
+  50% { filter: brightness(1.3) contrast(1.2) hue-rotate(30deg); }
+}
+
+.sphere-content {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.3), transparent 50%);
+  mix-blend-mode: soft-light;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: 
+    radial-gradient(1px 1px at 10% 10%, white 100%, transparent),
+    radial-gradient(1px 1px at 20% 20%, white 100%, transparent),
+    radial-gradient(2px 2px at 30% 30%, white 100%, transparent),
+    radial-gradient(2px 2px at 40% 40%, white 100%, transparent),
+    radial-gradient(1px 1px at 50% 50%, white 100%, transparent),
+    radial-gradient(1.5px 1.5px at 60% 60%, white 100%, transparent),
+    radial-gradient(2px 2px at 70% 70%, white 100%, transparent),
+    radial-gradient(1px 1px at 80% 80%, white 100%, transparent),
+    radial-gradient(1.5px 1.5px at 90% 90%, white 100%, transparent);
+  opacity: 0.8;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.swirl {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left-color: rgba(255, 255, 255, 0.8);
+  animation: swirl 8s linear infinite;
+}
+
+.swirl:nth-child(2) {
+  inset: 16%;
+  border-width: 3px;
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+.swirl:nth-child(3) {
+  inset: 24%;
+  animation-duration: 15s;
+}
+
+/* Modern Chat Header */
 .chat-header {
-  background: linear-gradient(45deg, #6A11CB, #2575FC);
+  background: linear-gradient(135deg, rgba(42, 47, 255, 0.95), rgba(0, 230, 230, 0.95));
+  padding: 12px;
   color: white;
-  padding: 10px 15px;
+  position: relative;
+  overflow: hidden;
+  height: 50px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-radius: 15px 15px 0 0;
+  justify-content: space-between;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-content h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #fff, #e0e0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-animation {
+  width: 30px;
+  height: 30px;
+  perspective: 1000px;
+}
+
+.logo-sphere {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  animation: rotateLogo 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes rotateLogo {
+  0% { transform: rotateX(0) rotateY(0) scale(1); }
+  25% { transform: rotateX(90deg) rotateY(45deg) scale(1.1); }
+  50% { transform: rotateX(180deg) rotateY(90deg) scale(1); }
+  75% { transform: rotateX(270deg) rotateY(135deg) scale(1.1); }
+  100% { transform: rotateX(360deg) rotateY(180deg) scale(1); }
 }
 
 .close-btn {
-  background: none;
+  width: 30px;
+  height: 30px;
   border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
   color: white;
-  font-size: 18px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
-.chat-body {
-  padding: 15px;
-  flex: 1;
-  overflow-y: auto;
-  background-color: #f5f5f5;
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
 }
 
+/* Message Bubbles */
 .chat-message {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 80%;
+  padding: 10px 14px;
+  margin: 6px 0;
+  max-width: 85%;
+  position: relative;
+  animation: messageAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
 }
 
 .chat-message.user {
-  background-color: #d1eaff;
-  align-self: flex-end;
-  text-align: right;
+  margin-left: auto;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border-radius: 14px 14px 4px 14px;
+  box-shadow: 0 4px 12px rgba(42, 47, 255, 0.15);
+  transform-origin: right bottom;
+  animation: userMessage 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes userMessage {
+  0% { transform: scale(0.8) translateX(20px); opacity: 0; }
+  100% { transform: scale(1) translateX(0); opacity: 1; }
 }
 
 .chat-message.bot {
-  background-color: #e9e9e9;
-  align-self: flex-start;
-  text-align: left;
+  margin-right: auto;
+  background: linear-gradient(135deg, #2c2c3a, #1a1a24);
+  color: white;
+  border-radius: 14px 14px 14px 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transform-origin: left bottom;
+  animation: botMessage 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@keyframes botMessage {
+  0% { transform: scale(0.8) translateX(-20px); opacity: 0; }
+  100% { transform: scale(1) translateX(0); opacity: 1; }
+}
 
+/* Chat Input Area */
 .chat-input {
+  background: rgba(10, 10, 15, 0.97);
+  padding: 12px;
   display: flex;
-  padding: 10px;
-  border-top: 1px solid #ddd;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .chat-input input {
   flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border: 2px solid rgba(42, 47, 255, 0.15);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.chat-input input:focus {
   outline: none;
-  font-size: 14px;
-  margin-right: 10px;
-  background-color: white; 
-  color: #000000; 
-  font-weight: 300;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(42, 47, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .chat-input input::placeholder {
-  color: #777; 
+  color: rgba(255, 255, 255, 0.5);
 }
 
-
 .send-btn {
-  background-color: #6A11CB;
-  color: white;
-  padding: 10px 15px;
+  width: 35px;
+  height: 35px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(42, 47, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .send-btn:hover {
-  background-color: #2575FC;
-  transform: translateY(-3px);
+  transform: translateY(-2px) scale(1.05) rotateX(10deg);
+  box-shadow: 0 6px 16px rgba(42, 47, 255, 0.3);
 }
 
-.chat-toggle-btn {
-  background-color: #2575FC;
-  color: white;
-  width: 55px;
-  height: 55px;
+.send-btn:active {
+  transform: translateY(1px) scale(0.95);
+}
+
+/* Chat Body */
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(10, 10, 15, 0.97);
+  scroll-behavior: smooth;
+}
+
+.chat-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  border-radius: 1.5px;
+}
+
+/* Typing Animation */
+.typing {
+  padding: 6px 10px;
+  max-width: 50%;
+}
+
+.typing-dot {
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  display: inline-block;
+  margin: 0 2px;
+  animation: typingBounce 1.2s infinite;
 }
 
-.chat-toggle-btn:hover {
-  background-color: #6A11CB;
-  transform: translateY(-3px);
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  30% { transform: translateY(-4px) scale(1.2); opacity: 1; }
 }
 
-.chat-toggle-icon {
-  font-size: 28px;
-}
-/* Adjustments for smaller screens */
+/* Responsive Design */
 @media (max-width: 768px) {
   .chat-box {
-    width: 90%; 
-    height: 350px; 
-    bottom: 10px;
-    right: 5px;
+    width: 260px;
+    height: 380px;
   }
-
-  .chat-input input {
-    padding: 7px; 
-    font-size: 12px; 
-  }
-
-  .chat-input button {
-    padding: 7px 10px; 
-  }
-
-  .chat-header h2 {
-    font-size: 16px; 
-  }
-
+  
   .chat-toggle-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 22px;
+    width: 50px;
+    height: 50px;
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 480px) {
   .chat-box {
-    width: 100%; 
-    height: 300px; 
-    border-radius: 10px; 
-    padding-bottom: 10px; 
-  }
-
-  .chat-input {
-    padding: 5px;
-  }
-
-  .chat-input input {
-    width: calc(100% - 60px);
-    font-size: 12px;
-    color: #000;
-    background-color: #fff; 
-  }
-
-  .chat-input button {
-    padding: 5px 10px; 
-    font-size: 12px; 
-    border-radius: 8px; 
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
-  }
-
-  .chat-toggle-btn {
-    width: 40px;
-    height: 40px; 
-  }
-
-  .chat-toggle-icon {
-    font-size: 18px; 
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
   }
 }
